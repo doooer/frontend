@@ -6,7 +6,7 @@
 
 사용할 프로젝트에 아래 명령어를 실행합니다.
 ```
-$ yarn workspace {workname} add --dev @zdk/eslint-config
+$ yarn workspace {workname} add --dev @pkgs/eslint-config
 ```
 
 ## 설정방법
