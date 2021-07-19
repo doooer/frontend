@@ -10,6 +10,8 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts?(x)'],
+      extends: ['plugin:import/typescript'],
+      plugins: ['@typescript-eslint'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         sourceType: 'module',
@@ -17,16 +19,6 @@ module.exports = {
           jsx: true,
         },
         warnOnUnsupportedTypeScriptVersion: true,
-      },
-      rules: {
-        'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': ['error'],
-
-        'no-unused-expressions': 'off',
-        '@typescript-eslint/no-unused-expressions': ['error'],
-
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
       },
     },
   ],

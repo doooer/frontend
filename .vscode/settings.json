@@ -3,6 +3,7 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
+  "eslint.workingDirectories": ["apps/main", "packages/eslint-config"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[json]": {
     "editor.formatOnSave": true

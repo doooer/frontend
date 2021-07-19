@@ -4,6 +4,8 @@ module.exports = {
     'no-alert': 'off',
     'no-console': 'off',
 
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
     'react/no-danger': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',

@@ -21,4 +21,20 @@ module.exports = {
     'valid-typeof': 'off',
     'function-paren-newline': 'off',
   },
+
+  overrides: [
+    {
+      files: ['**/*.ts?(x)'],
+      rules: {
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': ['error'],
+
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': ['error'],
+
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+      },
+    },
+  ],
 };
