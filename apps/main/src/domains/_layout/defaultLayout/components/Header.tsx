@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { handleColorType } from '~/core/Theme';
-
 export default function Header() {
   const pathName = useRouter().pathname;
   const [menuState, setMenuState] = useState<
@@ -92,8 +90,12 @@ export default function Header() {
 const HeaderContainer = styled.header`
   width: 100%;
   height: ${({ theme }) => theme.space.xLarge};
+  background-color: ${({ theme }) => theme.color.white};
+  box-shadow: 0 1px 4px ${({ theme }) => theme.color.shadow};
+
   display: grid;
   grid-template-columns: 176px auto 176px;
+  font-family: ${({ theme }) => theme.font.regular};
 `;
 
 const ContentsBox = styled.div`
@@ -119,15 +121,16 @@ const MenuList = styled.ul`
   list-style: none;
 `;
 
-const Menu = styled.li`
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? handleColorType('blue') : handleColorType('black20')};
+const Menu = styled.li<{ isSelected: boolean }>`
+  color: ${(props) => (props.isSelected ? props.theme.color.blue : props.theme.color.black20)};
+  font-family: ${(props) => (props.isSelected ? props.theme.font.bold : props.theme.font.regular)};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin-right: ${({ theme }) => theme.space.large};
   cursor: pointer;
 
   &:hover {
     color: ${({ theme }) => theme.color.blue};
+    font-family: ${({ theme }) => theme.font.bold};
   }
 `;
 
@@ -137,6 +140,7 @@ const AlertIcon = styled.img`
   border-radius: 50%;
   cursor: pointer;
   content: url('/images/buttons/unselected_bell.svg');
+  margin-bottom: ${({ theme }) => theme.space.xTiny};
 
   &:hover {
     content: url('/images/buttons/selected_bell.svg');
@@ -161,10 +165,13 @@ const AuthButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${({ theme }) => theme.space.xTiny};
 
   a {
     color: ${({ theme }) => theme.color.blue};
     font-size: ${({ theme }) => theme.fontSize.large};
+    font-family: ${({ theme }) => theme.font.regular};
     text-align: center;
+    margin-bottom: -2px;
   }
 `;

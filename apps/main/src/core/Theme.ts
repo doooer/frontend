@@ -38,6 +38,7 @@ const color = {
   black20: '#B1B1B1',
   overlay0: 'rgba(0, 0, 0, 0.7)',
   overlay10: 'rgba(0, 0, 0, 0.5)',
+  shadow: 'rgba(0, 0, 0, 0.185)',
 };
 
 const device = {
@@ -56,28 +57,3 @@ const theme = {
 };
 
 export default theme;
-
-export const handleColorType = (value?: string) => {
-  switch (value) {
-    case 'green':
-      return color.green;
-    case 'blue':
-      return color.blue;
-    case 'yellow':
-      return color.yellow;
-    case 'red':
-      return color.red;
-    case 'white':
-      return color.white;
-
-    case 'black0':
-      return color.black0;
-    case 'black10':
-      return color.black10;
-    case 'black20':
-      return color.black20;
-
-    default:
-      return color.black0;
-  }
-};

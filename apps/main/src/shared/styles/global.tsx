@@ -5,9 +5,11 @@ export const GlobalStyles = React.memo(() => {
   return (
     <Global
       styles={css`
+        @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
         html,
         body {
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+          font-family: 'Spoqa Han Sans Neo', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
             Droid Sans, Helvetica Neue, sans-serif;
         }
 
