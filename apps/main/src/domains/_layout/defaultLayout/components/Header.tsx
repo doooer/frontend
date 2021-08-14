@@ -91,7 +91,7 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: ${({ theme }) => theme.space.xLarge};
   background-color: ${({ theme }) => theme.color.white};
-  box-shadow: 0 1px 4px ${({ theme }) => theme.color.shadow};
+  box-shadow: 0 1px 4px ${({ theme }) => theme.color.shadow10};
 
   display: grid;
   grid-template-columns: 176px auto 176px;
@@ -107,6 +107,7 @@ const ContentsBox = styled.div`
 const Logo = styled.img`
   width: 176px;
   height: 60px;
+  cursor: pointer;
 `;
 
 const Navigation = styled.nav`
