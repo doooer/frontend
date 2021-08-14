@@ -5,18 +5,18 @@ const font = {
 };
 
 const fontSize = {
-  title: '36pt',
-  xLarge: '24pt',
-  large: '20pt',
-  medium: '18pt',
-  small: '16pt',
-  xSmall: '14pt',
+  title: '36px',
+  xLarge: '24px',
+  large: '20px',
+  medium: '18px',
+  small: '16px',
+  xSmall: '14px',
 };
 
 const space = {
   xxxLarge: '120px',
-  xxlarge: '100px',
-  xlarge: '80px',
+  xxLarge: '100px',
+  xLarge: '80px',
   large: '40px',
   meduim: '32px',
   small: '24px',
@@ -33,7 +33,12 @@ const color = {
   yellow: '#FCFC87',
   red: '#E56762',
   white: '#FFFFFF',
-  black: '#333333',
+  black0: '#333333',
+  black10: '#BCBCBC',
+  black20: '#B1B1B1',
+  overlay0: 'rgba(0, 0, 0, 0.7)',
+  overlay10: 'rgba(0, 0, 0, 0.5)',
+  shadow: 'rgba(0, 0, 0, 0.185)',
 };
 
 const device = {
