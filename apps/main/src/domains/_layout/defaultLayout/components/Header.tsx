@@ -43,7 +43,7 @@ export default function Header() {
     handelMenuColor(pathName);
   }, [pathName]);
 
-  // test function for login/register
+  // test function for SignIn/register
   const [userState, setUserState] = useState<boolean>(true);
   const testUserStatus = () => {
     if (userState) {
