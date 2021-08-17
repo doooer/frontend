@@ -79,3 +79,19 @@ const theme = {
 };
 
 export default theme;
+
+export type ThemeColorType = keyof typeof color;
+export type ThemeFontType = keyof typeof font;
+export type ThemeFontSizeType = keyof typeof fontSize;
+export type ThemeSpaceType = keyof typeof space;
+export type ThemeDeviceType = keyof typeof device;
+
+declare module '@emotion/react' {
+  export interface Theme {
+    font: typeof font;
+    fontSize: typeof fontSize;
+    space: typeof space;
+    color: typeof color;
+    device: typeof device;
+  }
+}
