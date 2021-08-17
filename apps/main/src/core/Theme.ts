@@ -14,31 +14,53 @@ const fontSize = {
 };
 
 const space = {
+  // grand
+  xGrand: '152px',
+  grand: '136px',
+
+  // large
   xxxLarge: '120px',
   xxLarge: '100px',
   xLarge: '80px',
   large: '40px',
-  meduim: '32px',
+
+  // medium
+  medium: '32px',
+
+  // small
   small: '24px',
   xSmall: '20px',
   xxSmall: '16px',
   xxxSmall: '12px',
+
+  // tiny
   tiny: '8px',
   xTiny: '4px',
 };
 
 const color = {
+  // brand color
   green: '#94DFAE',
   blue: '#3832E1',
   yellow: '#FCFC87',
   red: '#E56762',
   white: '#FFFFFF',
+
+  // sub color
+  violet10: '#5438FF',
+  violet20: '#633CFF',
+
+  // black
   black0: '#333333',
   black10: '#BCBCBC',
   black20: '#B1B1B1',
+
+  // overlay
   overlay0: 'rgba(0, 0, 0, 0.7)',
   overlay10: 'rgba(0, 0, 0, 0.5)',
-  shadow: 'rgba(0, 0, 0, 0.185)',
+
+  // shadow
+  shadow10: 'rgba(0, 0, 0, 0.185)',
 };
 
 const device = {
@@ -57,3 +79,19 @@ const theme = {
 };
 
 export default theme;
+
+export type ThemeColorType = keyof typeof color;
+export type ThemeFontType = keyof typeof font;
+export type ThemeFontSizeType = keyof typeof fontSize;
+export type ThemeSpaceType = keyof typeof space;
+export type ThemeDeviceType = keyof typeof device;
+
+declare module '@emotion/react' {
+  export interface Theme {
+    font: typeof font;
+    fontSize: typeof fontSize;
+    space: typeof space;
+    color: typeof color;
+    device: typeof device;
+  }
+}

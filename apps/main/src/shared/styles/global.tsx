@@ -9,6 +9,7 @@ export const GlobalStyles = React.memo(() => {
 
         html,
         body {
+          width: 100%;
           font-family: 'Spoqa Han Sans Neo', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
             Droid Sans, Helvetica Neue, sans-serif;
         }
