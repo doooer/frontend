@@ -44,34 +44,34 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding-top: ${(props) => props.theme.space.small};
+  padding-top: ${({ theme }) => theme.space.small};
 `;
 
 const Title = styled.h1`
-  margin: ${(props) => props.theme.space.large} 0;
-  padding: ${(props) => props.theme.space.small} 0 ${(props) => props.theme.space.xxxSmall} 0;
-  font-size: ${(props) => props.theme.fontSize.title};
-  color: ${(props) => props.theme.color.black0};
+  margin: ${({ theme }) => theme.space.large} 0;
+  padding: ${({ theme }) => theme.space.small} 0 ${({ theme }) => theme.space.xxxSmall} 0;
+  font-size: ${({ theme }) => theme.fontSize.title};
+  color: ${({ theme }) => theme.color.black0};
 `;
 
 const SignInForm = styled.form`
-  margin: ${(props) => props.theme.space.small} 0;
+  margin: ${({ theme }) => theme.space.small} 0;
 
   label {
     display: flex;
     flex-direction: column;
     width: 85%;
-    margin-bottom: ${(props) => props.theme.space.large};
+    margin-bottom: ${({ theme }) => theme.space.large};
 
     span {
-      margin-bottom: ${(props) => props.theme.space.tiny};
+      margin-bottom: ${({ theme }) => theme.space.tiny};
     }
 
     input {
       border: none;
-      border-bottom: 1px solid ${(props) => props.theme.color.black20};
-      padding: ${(props) => props.theme.space.tiny} 0;
-      font-size: ${(props) => props.theme.fontSize.small};
+      border-bottom: 1px solid ${({ theme }) => theme.color.black20};
+      padding: ${({ theme }) => theme.space.tiny} 0;
+      font-size: ${({ theme }) => theme.fontSize.small};
 
       &:focus {
         outline: none;
@@ -87,14 +87,14 @@ const SignInForm = styled.form`
 const Button = styled.button`
   width: 100%;
   height: 64px;
-  color: ${(props) => props.theme.color.white};
-  font-size: ${(props) => props.theme.fontSize.large};
+  color: ${({ theme }) => theme.color.white};
+  font-size: ${({ theme }) => theme.fontSize.large};
   border-radius: 6px;
-  background-color: ${(props) => props.theme.color.blue};
+  background-color: ${({ theme }) => theme.color.blue};
 `;
 
 const FindPasswordButton = styled.button`
   background-color: transparent;
-  font-size: ${(props) => props.theme.fontSize.medium};
-  color: ${(props) => props.theme.color.black20};
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  color: ${({ theme }) => theme.color.black20};
 `;
