@@ -87,6 +87,11 @@ export const GlobalStyles = React.memo(() => {
           cursor: pointer;
         }
 
+        button {
+          border: none;
+          cursor: pointer;
+        }
+
         * {
           box-sizing: border-box;
         }

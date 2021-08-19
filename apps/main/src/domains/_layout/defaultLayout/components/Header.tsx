@@ -96,6 +96,12 @@ const HeaderContainer = styled.header`
   display: grid;
   grid-template-columns: 176px auto 176px;
   font-family: ${({ theme }) => theme.font.regular};
+
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
 `;
 
 const ContentsBox = styled.div`
