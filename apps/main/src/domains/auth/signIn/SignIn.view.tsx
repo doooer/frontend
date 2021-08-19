@@ -16,7 +16,8 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
     password: '',
   });
 
-  const onChangeSignInValue = (e: React.ChangeEvent<any>) => {
+  // eslint-disable-next-line no-undef
+  const onChangeSignInValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignInValue({
       ...signInValue,
