@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
 import Button from '~/shared/components/buttons/Button';
@@ -11,76 +14,88 @@ import eye from '../../../../public/images/icons/eye.svg';
 import { Container, EyeButton, Label } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
+interface SignInFormType {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email('이메일 형식을 맞춰주세요.').required('이메일을 입력해주세요.'),
+  password: yup.string().required('패스워드를 입력해주세요.'),
+});
+
 export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
-  const [signInValue, setSignInValue] = useState<{ email: string; password: string }>({
-    email: '',
-    password: '',
+
+  const {
+    control,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<SignInFormType>({
+    resolver: yupResolver(schema),
   });
 
-  // eslint-disable-next-line no-undef
-  const onChangeSignInValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSignInValue({
-      ...signInValue,
-      [name]: value,
-    });
-  };
-
-  const isValidButton = () => {
-    return signInValue.email.length > 0 && signInValue.password.length > 0;
+  const onSubmit = (formData: SignInFormType) => {
+    console.log(formData);
   };
 
   const togglePassword = () => {
     setVisiblePassword((value) => !value);
   };
 
-  const signIn = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
   return (
     <AuthLayout>
       <Container>
         <Title>우리의 두어가 되어주세요 :)</Title>
-        <SignInForm onSubmit={signIn}>
-          <Label htmlFor="email">
-            <span>이메일</span>
-            <div>
-              <input
-                id="email"
-                type="text"
-                name="email"
-                placeholder="이메일을 입력해 주세요"
-                value={signInValue.email}
-                onChange={onChangeSignInValue}
-              />
-              <div className="animate_div" />
-              <ErrorText>test</ErrorText>
-            </div>
-          </Label>
+        <SignInForm onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            control={control}
+            name="email"
+            defaultValue=""
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Label htmlFor="email">
+                <span>이메일</span>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="이메일을 입력해 주세요"
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                  />
+                  <div className="animate_div" />
+                  {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+                </div>
+              </Label>
+            )}
+          />
+          <Controller
+            control={control}
+            name="password"
+            defaultValue=""
+            render={({ field: { onBlur, onChange, value } }) => (
+              <Label htmlFor="password">
+                <span>비밀번호</span>
+                <div>
+                  <input
+                    type={visiblePassword ? 'text' : 'password'}
+                    placeholder="비밀번호를 입력해 주세요"
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                  />
 
-          <Label htmlFor="password">
-            <span>비밀번호</span>
-            <div>
-              <input
-                id="password"
-                type={visiblePassword ? 'text' : 'password'}
-                name="password"
-                placeholder="비밀번호를 입력해 주세요"
-                value={signInValue.password}
-                onChange={onChangeSignInValue}
-              />
+                  <EyeButton onClick={togglePassword}>
+                    <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
+                  </EyeButton>
+                  <div className="animate_div" />
+                  {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
+                </div>
+              </Label>
+            )}
+          />
 
-              <EyeButton onClick={togglePassword}>
-                <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
-              </EyeButton>
-              <div className="animate_div" />
-              <ErrorText>test</ErrorText>
-            </div>
-          </Label>
-
-          <Button available={isValidButton()} width={504} padding="xSmall" color="white" background="blue">
+          <Button available={isValid} width={504} padding="xSmall" color="white" background="blue" type="submit">
             <Text>로그인</Text>
           </Button>
         </SignInForm>
