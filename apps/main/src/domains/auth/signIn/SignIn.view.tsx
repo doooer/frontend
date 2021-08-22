@@ -4,9 +4,11 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
+import Button from '~/shared/components/buttons/Button';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
+import { Container, EyeButton, Label } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
@@ -42,7 +44,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
       <Container>
         <Title>우리의 두어가 되어주세요 :)</Title>
         <SignInForm onSubmit={signIn}>
-          <label htmlFor="email">
+          <Label htmlFor="email">
             <span>이메일</span>
             <div>
               <input
@@ -54,10 +56,11 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
                 onChange={onChangeSignInValue}
               />
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
-          </label>
+          </Label>
 
-          <label htmlFor="password">
+          <Label htmlFor="password">
             <span>비밀번호</span>
             <div>
               <input
@@ -73,10 +76,13 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
                 <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
               </EyeButton>
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
-          </label>
+          </Label>
 
-          <Button available={isValidButton()}>로그인</Button>
+          <Button available={isValidButton()} width={504} padding="xSmall" color="white" background="blue">
+            <Text>로그인</Text>
+          </Button>
         </SignInForm>
         <Link href="/">
           <FindPasswordButton> 비밀번호를 잊어버렸나요? </FindPasswordButton>
@@ -85,22 +91,15 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
         <br />
 
         <Title>DOOOER가 처음이신가요?</Title>
-        <Link href="/">
-          <Button available>회원 가입</Button>
+        <Link href="/signUp">
+          <Button width={504} padding="xSmall" color="white" background="blue">
+            <Text>회원 가입</Text>
+          </Button>
         </Link>
       </Container>
     </AuthLayout>
   );
 });
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-top: ${({ theme }) => theme.space.small};
-  color: ${({ theme }) => theme.color.black0};
-`;
 
 const Title = styled.h1`
   margin: ${({ theme }) => theme.space.large} 0 ${({ theme }) => theme.space.medium} 0;
@@ -110,64 +109,6 @@ const Title = styled.h1`
 
 const SignInForm = styled.form`
   margin: ${({ theme }) => theme.space.small} 0;
-
-  label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: ${({ theme }) => theme.space.large};
-
-    span {
-      font-size: ${({ theme }) => theme.fontSize.large};
-      margin-bottom: ${({ theme }) => theme.space.xxSmall};
-    }
-
-    div {
-      .animate_div {
-        margin: -1px;
-        padding: 0;
-        position: relative;
-        width: 0px;
-        height: 2px;
-        left: 43%;
-        background-color: ${({ theme }) => theme.color.blue};
-        transition: 0.3s ease all;
-        visibility: hidden;
-      }
-
-      input {
-        width: 86%;
-        max-width: 442px;
-        border: none;
-        border-bottom: 1px solid ${({ theme }) => theme.color.black20};
-        padding: ${({ theme }) => theme.space.tiny} 0;
-        font-size: ${({ theme }) => theme.fontSize.small};
-
-        &:focus {
-          outline: none;
-
-          ~ .animate_div {
-            width: 86%;
-            max-width: 442px;
-            left: 0;
-            visibility: visible;
-          }
-
-          &::placeholder {
-            color: transparent;
-          }
-        }
-      }
-    }
-  }
-`;
-
-const Button = styled.button<{ available: boolean }>`
-  width: 100%;
-  height: 64px;
-  color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.fontSize.large};
-  border-radius: 6px;
-  background-color: ${(props) => (props.available === true ? props.theme.color.blue : props.theme.color.black20)};
 `;
 
 const FindPasswordButton = styled.button`
@@ -176,10 +117,12 @@ const FindPasswordButton = styled.button`
   color: ${({ theme }) => theme.color.black20};
 `;
 
-const EyeButton = styled.button`
-  width: fit-content;
-  height: fit-content;
-  background-color: transparent;
-  position: relative;
-  left: ${({ theme }) => theme.space.xSmall};
+const Text = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.large};
+`;
+
+const ErrorText = styled.p`
+  padding-top: ${({ theme }) => theme.space.tiny};
+  font-size: ${({ theme }) => theme.fontSize.xSmall};
+  color: ${({ theme }) => theme.color.red};
 `;
