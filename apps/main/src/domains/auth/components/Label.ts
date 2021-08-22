@@ -35,7 +35,7 @@ const Label = styled.label`
         outline: none;
 
         ~ .animate_div {
-          width: 86%;
+          width: calc(86% + 1px);
           max-width: 442px;
           left: 0;
           visibility: visible;
