@@ -8,7 +8,7 @@ import Button from '~/shared/components/buttons/Button';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
-import { Container, EyeButton, Label } from '../components';
+import { Container, ErrorText, EyeButton, Label } from '../components';
 import { SignUpViewModel } from './SignUp.view.model';
 
 export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
@@ -72,6 +72,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 onChange={onChangeSignUpValue}
               />
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
           </Label>
 
@@ -87,6 +88,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 onChange={onChangeSignUpValue}
               />
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
           </Label>
 
@@ -106,6 +108,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
               </EyeButton>
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
           </Label>
 
@@ -125,6 +128,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 <Image src={visibleConfirmPassword ? eye : blindEye} alt="visible confirm-password" />
               </EyeButton>
               <div className="animate_div" />
+              <ErrorText>test</ErrorText>
             </div>
           </Label>
 

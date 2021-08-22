@@ -11,7 +11,7 @@ import Button from '~/shared/components/buttons/Button';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
-import { Container, EyeButton, Label } from '../components';
+import { Container, ErrorText, EyeButton, Label } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 interface SignInFormType {
@@ -134,10 +134,4 @@ const FindPasswordButton = styled.button`
 
 const Text = styled.p`
   font-size: ${({ theme }) => theme.fontSize.large};
-`;
-
-const ErrorText = styled.p`
-  padding-top: ${({ theme }) => theme.space.tiny};
-  font-size: ${({ theme }) => theme.fontSize.xSmall};
-  color: ${({ theme }) => theme.color.red};
 `;
