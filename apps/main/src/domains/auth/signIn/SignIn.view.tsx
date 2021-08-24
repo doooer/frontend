@@ -8,6 +8,7 @@ import * as yup from 'yup';
 
 import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
 import Button from '~/shared/components/buttons/Button';
+import ErrorMessages from '~/shared/ErrorMessages';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
@@ -19,9 +20,11 @@ interface SignInFormType {
   password: string;
 }
 
-const schema = yup.object().shape({
-  email: yup.string().email('이메일 형식을 맞춰주세요.').required('이메일을 입력해주세요.'),
-  password: yup.string().required('패스워드를 입력해주세요.'),
+const { email, password } = ErrorMessages.AUTH_ERROR_MESSAGE;
+
+const signInSchema = yup.object().shape({
+  email: yup.string().email(email.wrongAddress).required(email.default),
+  password: yup.string().required(password.default),
 });
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
@@ -32,10 +35,10 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<SignInFormType>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signInSchema),
   });
 
-  const onSubmit = (formData: SignInFormType) => {
+  const onSubmitHandler = (formData: SignInFormType) => {
     console.log(formData);
   };
 
@@ -47,7 +50,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
     <AuthLayout>
       <Container>
         <Title>우리의 두어가 되어주세요 :)</Title>
-        <SignInForm onSubmit={handleSubmit(onSubmit)}>
+        <SignInForm onSubmit={handleSubmit(onSubmitHandler)}>
           <Controller
             control={control}
             name="email"
@@ -56,13 +59,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
               <Label htmlFor="email">
                 <span>이메일</span>
                 <div>
-                  <input
-                    type="text"
-                    placeholder="이메일을 입력해 주세요"
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
+                  <input type="text" placeholder={password.default} value={value} onChange={onChange} onBlur={onBlur} />
                   <div className="animate_div" />
                   {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
                 </div>
@@ -79,7 +76,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
                 <div>
                   <input
                     type={visiblePassword ? 'text' : 'password'}
-                    placeholder="비밀번호를 입력해 주세요"
+                    placeholder={password.default}
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}

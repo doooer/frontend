@@ -11,6 +11,7 @@ const fontSize = {
   medium: '18px',
   small: '16px',
   xSmall: '14px',
+  tiny: '10px',
 };
 
 const space = {
