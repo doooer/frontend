@@ -12,7 +12,7 @@ import ErrorMessages from '~/shared/ErrorMessages';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label } from '../components';
+import { Container, ErrorText, EyeButton, Label } from '../components/styles';
 import { SignInViewModel } from './SignIn.view.model';
 
 interface SignInFormType {

@@ -12,7 +12,8 @@ import ErrorMessages from '~/shared/ErrorMessages';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label } from '../components';
+import { MembersInfo, PersonalInfo } from '../components/modals';
+import { Container, ErrorText, EyeButton, Label } from '../components/styles';
 import { SignUpViewModel } from './SignUp.view.model';
 
 interface SignUpFormType {
@@ -42,6 +43,8 @@ const signUpSchema = yup.object().shape({
 export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
   const [visibleConfirmPassword, setVisibleConfirmPassword] = useState<boolean>(false);
+  const [togglePersonalInfoModal, setTogglePersonalInfoModal] = useState<boolean>(false);
+  const [toggleMembersInfoModal, setToggleMembersInfoModal] = useState<boolean>(false);
 
   const {
     control,
@@ -61,6 +64,18 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
 
   const toggleConfirmPassword = () => {
     setVisibleConfirmPassword((value) => !value);
+  };
+
+  const openPersonalInfo = () => {
+    if (toggleMembersInfoModal) setToggleMembersInfoModal(false);
+
+    setTogglePersonalInfoModal((value) => !value);
+  };
+
+  const openMembersInfo = () => {
+    if (togglePersonalInfoModal) setTogglePersonalInfoModal(false);
+
+    setToggleMembersInfoModal((value) => !value);
   };
 
   return (
@@ -162,7 +177,10 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 <Terms htmlFor="personalInfoCheck">
                   <input type="checkbox" checked={value} onChange={onChange} onBlur={onBlur} />
                   <span>
-                    <button type="button">개인정보처리방침</button>에 동의합니다.
+                    <button type="button" onClick={openPersonalInfo}>
+                      개인정보처리방침
+                    </button>
+                    에 동의합니다.
                   </span>
                 </Terms>
               )}
@@ -176,7 +194,10 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                 <Terms htmlFor="membersInfoCheck">
                   <input type="checkbox" checked={value} onChange={onChange} onBlur={onBlur} />
                   <span>
-                    <button type="button">회원약관</button>에 동의합니다.
+                    <button type="button" onClick={openMembersInfo}>
+                      회원약관
+                    </button>
+                    에 동의합니다.
                   </span>
                 </Terms>
               )}
@@ -190,6 +211,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
           )}
         </SignUpForm>
       </Container>
+
+      {togglePersonalInfoModal && <PersonalInfo onClick={openPersonalInfo} />}
+      {toggleMembersInfoModal && <MembersInfo onClick={openMembersInfo} />}
     </AuthLayout>
   );
 });

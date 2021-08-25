@@ -1,11 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-interface AuthLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function AuthLayout({ children }: AuthLayoutProps) {
+const AuthLayout: React.FC = ({ children }) => {
   return (
     <AuthPageContainer>
       <NoticeImageSection>
@@ -16,7 +12,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
       </AuthSection>
     </AuthPageContainer>
   );
-}
+};
 
 const AuthPageContainer = styled.div`
   max-width: 1600px;
@@ -56,3 +52,5 @@ const AuthTemplateBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export default AuthLayout;
