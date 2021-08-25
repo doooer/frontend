@@ -1,4 +1,4 @@
-import Modal from '~/domains/_layout/defaultLayout/components/Modal';
+import Modal from '~/shared/components/Modal';
 
 interface PersonalInfoPropsType {
   onClick: () => void;
