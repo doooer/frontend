@@ -36,8 +36,8 @@ const signUpSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], confirmPassword.mismatch)
     .required(confirmPassword.default),
-  personalInfoCheck: yup.bool().oneOf([true], notice.default).required(),
-  membersInfoCheck: yup.bool().oneOf([true], notice.default).required(),
+  personalInfoCheck: yup.bool().oneOf([true], notice.default).required(notice.default),
+  membersInfoCheck: yup.bool().oneOf([true], notice.default).required(notice.default),
 });
 
 export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {

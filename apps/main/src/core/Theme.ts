@@ -53,7 +53,7 @@ const color = {
 
   // black
   black0: '#333333',
-  black10: '#BCBCBC',
+  black10: '#6C6C6C',
   black20: '#B1B1B1',
 
   // overlay
