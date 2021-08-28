@@ -12,7 +12,7 @@ import ErrorMessages from '~/shared/ErrorMessages';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label } from '../components/styles';
+import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
 import { SignInViewModel } from './SignIn.view.model';
 
 interface SignInFormType {
@@ -61,7 +61,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
                 <div>
                   <input type="text" placeholder={password.default} value={value} onChange={onChange} onBlur={onBlur} />
                   <div className="animate_div" />
-                  {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+                  <MessageBox>{errors.email && <ErrorText>{errors.email.message}</ErrorText>}</MessageBox>
                 </div>
               </Label>
             )}
@@ -86,7 +86,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
                     <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
                   </EyeButton>
                   <div className="animate_div" />
-                  {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
+                  <MessageBox>{errors.password && <ErrorText>{errors.password.message}</ErrorText>}</MessageBox>
                 </div>
               </Label>
             )}
