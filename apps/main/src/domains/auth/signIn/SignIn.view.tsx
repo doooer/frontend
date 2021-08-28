@@ -1,82 +1,100 @@
 import styled from '@emotion/styled';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
+import Button from '~/shared/components/buttons/Button';
+import ErrorMessages from '~/shared/ErrorMessages';
 
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
+import { Container, ErrorText, EyeButton, Label } from '../components/styles';
 import { SignInViewModel } from './SignIn.view.model';
+
+interface SignInFormType {
+  email: string;
+  password: string;
+}
+
+const { email, password } = ErrorMessages.AUTH_ERROR_MESSAGE;
+
+const signInSchema = yup.object().shape({
+  email: yup.string().email(email.wrongAddress).required(email.default),
+  password: yup.string().required(password.default),
+});
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
-  const [signInValue, setSignInValue] = useState<{ email: string; password: string }>({
-    email: '',
-    password: '',
+
+  const {
+    control,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<SignInFormType>({
+    resolver: yupResolver(signInSchema),
   });
 
-  // eslint-disable-next-line no-undef
-  const onChangeSignInValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSignInValue({
-      ...signInValue,
-      [name]: value,
-    });
-  };
-
-  const isValidButton = () => {
-    return signInValue.email.length > 0 && signInValue.password.length > 0;
+  const onSubmitHandler = (formData: SignInFormType) => {
+    console.log(formData);
   };
 
   const togglePassword = () => {
     setVisiblePassword((value) => !value);
   };
 
-  const signIn = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
   return (
     <AuthLayout>
       <Container>
         <Title>우리의 두어가 되어주세요 :)</Title>
-        <SignInForm onSubmit={signIn}>
-          <label htmlFor="email">
-            <span>이메일</span>
-            <div>
-              <input
-                id="email"
-                type="text"
-                name="email"
-                placeholder="이메일을 입력해 주세요"
-                value={signInValue.email}
-                onChange={onChangeSignInValue}
-              />
-              <div className="animate_div" />
-            </div>
-          </label>
+        <SignInForm onSubmit={handleSubmit(onSubmitHandler)}>
+          <Controller
+            control={control}
+            name="email"
+            defaultValue=""
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Label htmlFor="email">
+                <span>이메일</span>
+                <div>
+                  <input type="text" placeholder={password.default} value={value} onChange={onChange} onBlur={onBlur} />
+                  <div className="animate_div" />
+                  {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+                </div>
+              </Label>
+            )}
+          />
+          <Controller
+            control={control}
+            name="password"
+            defaultValue=""
+            render={({ field: { onBlur, onChange, value } }) => (
+              <Label htmlFor="password">
+                <span>비밀번호</span>
+                <div>
+                  <input
+                    type={visiblePassword ? 'text' : 'password'}
+                    placeholder={password.default}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                  />
 
-          <label htmlFor="password">
-            <span>비밀번호</span>
-            <div>
-              <input
-                id="password"
-                type={visiblePassword ? 'text' : 'password'}
-                name="password"
-                placeholder="비밀번호를 입력해 주세요"
-                value={signInValue.password}
-                onChange={onChangeSignInValue}
-              />
+                  <EyeButton onClick={togglePassword}>
+                    <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
+                  </EyeButton>
+                  <div className="animate_div" />
+                  {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
+                </div>
+              </Label>
+            )}
+          />
 
-              <EyeButton onClick={togglePassword}>
-                <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
-              </EyeButton>
-              <div className="animate_div" />
-            </div>
-          </label>
-
-          <Button available={isValidButton()}>로그인</Button>
+          <Button available={isValid} width={504} padding="xSmall" color="white" background="blue" type="submit">
+            <Text>로그인</Text>
+          </Button>
         </SignInForm>
         <Link href="/">
           <FindPasswordButton> 비밀번호를 잊어버렸나요? </FindPasswordButton>
@@ -85,22 +103,15 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
         <br />
 
         <Title>DOOOER가 처음이신가요?</Title>
-        <Link href="/">
-          <Button available>회원 가입</Button>
+        <Link href="/signUp">
+          <Button width={504} padding="xSmall" color="white" background="blue">
+            <Text>회원 가입</Text>
+          </Button>
         </Link>
       </Container>
     </AuthLayout>
   );
 });
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-top: ${({ theme }) => theme.space.small};
-  color: ${({ theme }) => theme.color.black0};
-`;
 
 const Title = styled.h1`
   margin: ${({ theme }) => theme.space.large} 0 ${({ theme }) => theme.space.medium} 0;
@@ -110,64 +121,6 @@ const Title = styled.h1`
 
 const SignInForm = styled.form`
   margin: ${({ theme }) => theme.space.small} 0;
-
-  label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: ${({ theme }) => theme.space.large};
-
-    span {
-      font-size: ${({ theme }) => theme.fontSize.large};
-      margin-bottom: ${({ theme }) => theme.space.xxSmall};
-    }
-
-    div {
-      .animate_div {
-        margin: -1px;
-        padding: 0;
-        position: relative;
-        width: 0px;
-        height: 2px;
-        left: 43%;
-        background-color: ${({ theme }) => theme.color.blue};
-        transition: 0.3s ease all;
-        visibility: hidden;
-      }
-
-      input {
-        width: 86%;
-        max-width: 442px;
-        border: none;
-        border-bottom: 1px solid ${({ theme }) => theme.color.black20};
-        padding: ${({ theme }) => theme.space.tiny} 0;
-        font-size: ${({ theme }) => theme.fontSize.small};
-
-        &:focus {
-          outline: none;
-
-          ~ .animate_div {
-            width: 86%;
-            max-width: 442px;
-            left: 0;
-            visibility: visible;
-          }
-
-          &::placeholder {
-            color: transparent;
-          }
-        }
-      }
-    }
-  }
-`;
-
-const Button = styled.button<{ available: boolean }>`
-  width: 100%;
-  height: 64px;
-  color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.fontSize.large};
-  border-radius: 6px;
-  background-color: ${(props) => (props.available === true ? props.theme.color.blue : props.theme.color.black20)};
 `;
 
 const FindPasswordButton = styled.button`
@@ -176,10 +129,6 @@ const FindPasswordButton = styled.button`
   color: ${({ theme }) => theme.color.black20};
 `;
 
-const EyeButton = styled.button`
-  width: fit-content;
-  height: fit-content;
-  background-color: transparent;
-  position: relative;
-  left: ${({ theme }) => theme.space.xSmall};
+const Text = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.large};
 `;

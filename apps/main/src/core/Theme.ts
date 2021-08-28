@@ -11,6 +11,7 @@ const fontSize = {
   medium: '18px',
   small: '16px',
   xSmall: '14px',
+  tiny: '10px',
 };
 
 const space = {
@@ -52,7 +53,7 @@ const color = {
 
   // black
   black0: '#333333',
-  black10: '#BCBCBC',
+  black10: '#6C6C6C',
   black20: '#B1B1B1',
 
   // overlay
@@ -60,7 +61,7 @@ const color = {
   overlay10: 'rgba(0, 0, 0, 0.5)',
 
   // shadow
-  shadow10: 'rgba(0, 0, 0, 0.185)',
+  shadow10: 'rgba(30, 30, 30, 0.185)',
 };
 
 const device = {

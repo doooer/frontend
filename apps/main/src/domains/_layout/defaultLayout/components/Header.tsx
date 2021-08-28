@@ -78,7 +78,7 @@ export default function Header() {
             </>
           ) : (
             <AuthButton onClick={testUserStatus}>
-              <Link href="/signin">로그인/회원가입</Link>
+              <Link href="/signIn">로그인/회원가입</Link>
             </AuthButton>
           )}
         </Navigation>
