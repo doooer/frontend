@@ -58,7 +58,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
             render={({ field: { value, onChange, onBlur } }) => (
               <Label htmlFor="email">
                 <span>이메일</span>
-                <div>
+                <div className="input_container">
                   <input type="text" placeholder={password.default} value={value} onChange={onChange} onBlur={onBlur} />
                   <div className="animate_div" />
                   <MessageBox>{errors.email && <ErrorText>{errors.email.message}</ErrorText>}</MessageBox>
@@ -73,7 +73,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
             render={({ field: { onBlur, onChange, value } }) => (
               <Label htmlFor="password">
                 <span>비밀번호</span>
-                <div>
+                <div className="input_container">
                   <input
                     type={visiblePassword ? 'text' : 'password'}
                     placeholder={password.default}
