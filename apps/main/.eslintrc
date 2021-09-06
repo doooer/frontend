@@ -1,0 +1,3 @@
+{
+  "extends": ["@pkgs/eslint-config"]
+}
