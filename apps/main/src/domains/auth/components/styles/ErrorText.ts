@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const ErrorText = styled.p<{ border?: boolean }>`
-  width: calc(86% + 1px);
+const ErrorText = styled.p<{ width?: number; border?: boolean }>`
+  width: calc(${(props) => props.width}% + 1px);
   max-width: 442px;
 
   ${(props) =>
@@ -20,6 +20,7 @@ const ErrorText = styled.p<{ border?: boolean }>`
 
 ErrorText.defaultProps = {
   border: true,
+  width: 86,
 };
 
 export default ErrorText;

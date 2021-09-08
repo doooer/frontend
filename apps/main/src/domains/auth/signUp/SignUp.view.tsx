@@ -13,7 +13,7 @@ import ErrorMessages from '~/shared/ErrorMessages';
 import blindEye from '../../../../public/images/icons/blind_eye.svg';
 import eye from '../../../../public/images/icons/eye.svg';
 import { MembersInfo, PersonalInfo } from '../components/modals';
-import { Container, ErrorText, EyeButton, Label } from '../components/styles';
+import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
 import { SignUpViewModel } from './SignUp.view.model';
 
 interface SignUpFormType {
@@ -95,10 +95,10 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
             render={({ field: { value, onChange, onBlur } }) => (
               <Label htmlFor="name">
                 <span>사용자 이름</span>
-                <div>
+                <div className="input_container">
                   <input type="text" placeholder={name.default} value={value} onChange={onChange} onBlur={onBlur} />
                   <div className="animate_div" />
-                  {errors.name && <ErrorText>{errors.name.message}</ErrorText>}
+                  <MessageBox>{errors.name && <ErrorText>{errors.name.message}</ErrorText>}</MessageBox>
                 </div>
               </Label>
             )}
@@ -110,10 +110,10 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
             render={({ field: { value, onChange, onBlur } }) => (
               <Label htmlFor="email">
                 <span>이메일</span>
-                <div>
+                <div className="input_container">
                   <input type="text" placeholder={email.default} value={value} onChange={onChange} onBlur={onBlur} />
                   <div className="animate_div" />
-                  {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+                  <MessageBox>{errors.email && <ErrorText>{errors.email.message}</ErrorText>}</MessageBox>
                 </div>
               </Label>
             )}
@@ -125,7 +125,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
             render={({ field: { value, onChange, onBlur } }) => (
               <Label htmlFor="password">
                 <span>비밀번호</span>
-                <div>
+                <div className="input_container">
                   <input
                     type={visiblePassword ? 'text' : 'password'}
                     placeholder={password.default}
@@ -138,7 +138,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                     <Image src={visiblePassword ? eye : blindEye} alt="visible password" />
                   </EyeButton>
                   <div className="animate_div" />
-                  {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
+                  <MessageBox>{errors.password && <ErrorText>{errors.password.message}</ErrorText>}</MessageBox>
                 </div>
               </Label>
             )}
@@ -150,7 +150,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
             render={({ field: { value, onChange, onBlur } }) => (
               <Label htmlFor="confirmPassword">
                 <span>비밀번호 확인</span>
-                <div>
+                <div className="input_container">
                   <input
                     type={visibleConfirmPassword ? 'text' : 'password'}
                     placeholder={password.default}
@@ -163,7 +163,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
                     <Image src={visibleConfirmPassword ? eye : blindEye} alt="visible confirm-password" />
                   </EyeButton>
                   <div className="animate_div" />
-                  {errors.confirmPassword && <ErrorText>{errors.confirmPassword.message}</ErrorText>}
+                  <MessageBox>
+                    {errors.confirmPassword && <ErrorText>{errors.confirmPassword.message}</ErrorText>}
+                  </MessageBox>
                 </div>
               </Label>
             )}
@@ -207,10 +209,27 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
           <Button available={isValid} width={504} padding="xxSmall" color="white" background="blue">
             <Text>인증 메일 발송</Text>
           </Button>
-          {(errors.personalInfoCheck || errors.membersInfoCheck) && (
-            <ErrorText border={false}>{errors.membersInfoCheck!.message}</ErrorText>
-          )}
+          <MessageBox>
+            {(errors.personalInfoCheck || errors.membersInfoCheck) && (
+              <ErrorText border={false}>{errors.membersInfoCheck!.message}</ErrorText>
+            )}
+          </MessageBox>
         </SignUpForm>
+
+        <Label htmlFor="certification" width={60}>
+          <span>인증코드를 입력하세요.</span>
+          <div className="input_container">
+            <input type="text" placeholder="회원가입을 위한 인증 메일을발송했습니다." />
+            <span>남은시간</span>
+            <div className="animate_div" />
+            <MessageBox>
+              <ErrorText width={60}>에러메세지 임마</ErrorText>
+            </MessageBox>
+          </div>
+        </Label>
+        <Button available={false} width={180} padding="xxxSmall" color="white" background="blue">
+          <Text>인증 번호 확인</Text>
+        </Button>
       </Container>
 
       {togglePersonalInfoModal && <PersonalInfo onClick={openPersonalInfo} />}
