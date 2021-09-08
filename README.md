@@ -1,2 +1,2 @@
 # frontend
-3do studio frontend (가제)
+doooer.io frontend
