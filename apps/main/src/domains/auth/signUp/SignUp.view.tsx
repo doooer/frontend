@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
+import AuthLayout from '~/domains/_layout/authLayout/AuthPage';
 import Button from '~/shared/components/buttons/Button';
 import ErrorMessages from '~/shared/ErrorMessages';
 

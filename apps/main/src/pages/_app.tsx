@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import theme from '~/core/Theme';
-import Header from '~/domains/_layout/defaultLayout/components/Header';
+import { Header } from '~/domains/_layout/defaultLayout';
 import { GlobalStyles } from '~/shared/styles/global';
 
 const queryClient = new QueryClient();

@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import HOME_LOGO from '../../../images/buttons/home.svg';
+// import ALERT_ICON_AFTER from '../../../images/buttons/selected_bell.svg';
+import USER_IMAGE from '../../../images/buttons/test_image_user.png';
+import ALERT_ICON_BEFORE from '../../../images/buttons/unselected_bell.svg';
 
 export default function Header() {
   const pathName = useRouter().pathname;
@@ -29,15 +35,18 @@ export default function Header() {
     },
   ]);
 
-  const handelMenuColor = (path: string) => {
-    setMenuState(
-      menuState.map((menu) =>
-        menu.path.substring(0, menu.path.length) === path.substring(0, menu.path.length)
-          ? { ...menu, selected: true }
-          : { ...menu, selected: false },
-      ),
-    );
-  };
+  const handelMenuColor = useCallback(
+    (path: string) => {
+      setMenuState(
+        menuState.map((menu) =>
+          menu.path.substring(0, menu.path.length) === path.substring(0, menu.path.length)
+            ? { ...menu, selected: true }
+            : { ...menu, selected: false },
+        ),
+      );
+    },
+    [menuState],
+  );
 
   useEffect(() => {
     handelMenuColor(pathName);
@@ -57,13 +66,13 @@ export default function Header() {
     <HeaderContainer>
       <ContentsBox>
         <Link href="/">
-          <Logo src="/images/buttons/home.svg" alt="home button" />
+          <Logo src={HOME_LOGO} alt="home button" />
         </Link>
 
         <Navigation>
           <MenuList>
             {menuState.map((menu) => (
-              <Menu onClick={() => handelMenuColor(menu.path)} isSelected={menu.selected} key={menu.name}>
+              <Menu isSelected={menu.selected} key={menu.name}>
                 <Link href={menu.path}>{menu.name}</Link>
               </Menu>
             ))}
@@ -72,9 +81,13 @@ export default function Header() {
           {userState ? (
             <>
               <Link href="/alert">
-                <AlertIcon alt="alert button" />
+                <AlertIcon
+                  src={ALERT_ICON_BEFORE}
+                  // onMouseOver={(e: any) => (e.currentTarget.src = `${ALERT_ICON_AFTER}`)}
+                  alt="alert button"
+                />
               </Link>
-              <UserIcon onClick={testUserStatus} alt="my page button" />
+              <UserIcon src={USER_IMAGE} onClick={testUserStatus} alt="my page button" />
             </>
           ) : (
             <AuthButton onClick={testUserStatus}>
@@ -110,7 +123,7 @@ const ContentsBox = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.img`
+const Logo = styled(Image)`
   width: 176px;
   height: 60px;
   cursor: pointer;
@@ -141,26 +154,20 @@ const Menu = styled.li<{ isSelected: boolean }>`
   }
 `;
 
-const AlertIcon = styled.img`
+const AlertIcon = styled(Image)`
   width: 50px;
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  content: url('/images/buttons/unselected_bell.svg');
   margin-bottom: ${({ theme }) => theme.space.xTiny};
-
-  &:hover {
-    content: url('/images/buttons/selected_bell.svg');
-  }
 `;
 
-const UserIcon = styled.img`
+const UserIcon = styled(Image)`
   width: 50px;
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
   margin-left: ${({ theme }) => theme.space.xSmall};
-  content: url('/images/buttons/test_image_user.png');
 `;
 
 const AuthButton = styled.button`
