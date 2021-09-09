@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import HOME_LOGO from '../../../images/buttons/home.svg';
-// import ALERT_ICON_AFTER from '../../../images/buttons/selected_bell.svg';
 import USER_IMAGE from '../../../images/buttons/test_image_user.png';
 import ALERT_ICON_BEFORE from '../../../images/buttons/unselected_bell.svg';
 
@@ -81,11 +80,7 @@ export default function Header() {
           {userState ? (
             <>
               <Link href="/alert">
-                <AlertIcon
-                  src={ALERT_ICON_BEFORE}
-                  // onMouseOver={(e: any) => (e.currentTarget.src = `${ALERT_ICON_AFTER}`)}
-                  alt="alert button"
-                />
+                <AlertIcon src={ALERT_ICON_BEFORE} alt="alert button" />
               </Link>
               <UserIcon src={USER_IMAGE} onClick={testUserStatus} alt="my page button" />
             </>
