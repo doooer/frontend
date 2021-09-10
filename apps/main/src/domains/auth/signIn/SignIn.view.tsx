@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import AuthLayout from '~/domains/_layout/authLayout/AuthPage';
 import Button from '~/shared/components/buttons/Button';
+import ForwardLink from '~/shared/components/ForwardLink';
 import ErrorMessages from '~/shared/ErrorMessages';
 
-import blindEye from '../../../../public/images/icons/blind_eye.svg';
-import eye from '../../../../public/images/icons/eye.svg';
+import blindEye from '../../../images/icons/blind_eye.svg';
+import eye from '../../../images/icons/eye.svg';
 import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
 import { SignInViewModel } from './SignIn.view.model';
 
@@ -96,18 +96,18 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(() => {
             <Text>로그인</Text>
           </Button>
         </SignInForm>
-        <Link href="/">
+        <ForwardLink href="/">
           <FindPasswordButton> 비밀번호를 잊어버렸나요? </FindPasswordButton>
-        </Link>
+        </ForwardLink>
 
         <br />
 
         <Title>DOOOER가 처음이신가요?</Title>
-        <Link href="/signUp">
+        <ForwardLink href="/signUp">
           <Button width={504} padding="xSmall" color="white" background="blue">
             <Text>회원 가입</Text>
           </Button>
-        </Link>
+        </ForwardLink>
       </Container>
     </AuthLayout>
   );

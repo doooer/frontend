@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
+
+import ForwardLink from '~/shared/components/ForwardLink';
 
 import HOME_LOGO from '../../../images/buttons/home.svg';
 import USER_IMAGE from '../../../images/buttons/test_image_user.png';
@@ -64,29 +65,37 @@ export default function Header() {
   return (
     <HeaderContainer>
       <ContentsBox>
-        <Link href="/">
-          <Logo src={HOME_LOGO} alt="home button" />
-        </Link>
+        <ForwardLink href="/">
+          <LogoImageWrapper>
+            <Image width={176} height={60} src={HOME_LOGO} alt="home button" />
+          </LogoImageWrapper>
+        </ForwardLink>
 
         <Navigation>
           <MenuList>
             {menuState.map((menu) => (
               <Menu isSelected={menu.selected} key={menu.name}>
-                <Link href={menu.path}>{menu.name}</Link>
+                <ForwardLink href={menu.path}>{menu.name}</ForwardLink>
               </Menu>
             ))}
           </MenuList>
 
           {userState ? (
             <>
-              <Link href="/alert">
-                <AlertIcon src={ALERT_ICON_BEFORE} alt="alert button" />
-              </Link>
-              <UserIcon src={USER_IMAGE} onClick={testUserStatus} alt="my page button" />
+              <ForwardLink href="/alert">
+                <AlertIconImageWapper>
+                  <Image width={50} height={50} src={ALERT_ICON_BEFORE} alt="alert button" />
+                </AlertIconImageWapper>
+              </ForwardLink>
+              <UserIconImageWapper>
+                <Image width={50} height={50} src={USER_IMAGE} onClick={testUserStatus} alt="my page button" />
+              </UserIconImageWapper>
             </>
           ) : (
             <AuthButton onClick={testUserStatus}>
-              <Link href="/signIn">로그인/회원가입</Link>
+              <ForwardLink href="/signIn">
+                <a>로그인/회원가입</a>
+              </ForwardLink>
             </AuthButton>
           )}
         </Navigation>
@@ -118,9 +127,7 @@ const ContentsBox = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Image)`
-  width: 176px;
-  height: 60px;
+const LogoImageWrapper = styled.div`
   cursor: pointer;
 `;
 
@@ -149,20 +156,16 @@ const Menu = styled.li<{ isSelected: boolean }>`
   }
 `;
 
-const AlertIcon = styled(Image)`
-  width: 50px;
-  height: 50px;
+const AlertIconImageWapper = styled.div`
   border-radius: 50%;
   cursor: pointer;
   margin-bottom: ${({ theme }) => theme.space.xTiny};
 `;
 
-const UserIcon = styled(Image)`
-  width: 50px;
-  height: 50px;
+const UserIconImageWapper = styled.div`
   border-radius: 50%;
   cursor: pointer;
-  margin-left: ${({ theme }) => theme.space.xSmall};
+  margin-left: ${({ theme }) => theme.space.small};
 `;
 
 const AuthButton = styled.button`
