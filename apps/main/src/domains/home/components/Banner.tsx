@@ -9,7 +9,7 @@ function Banner() {
   );
 }
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.section`
   width: 100%;
   height: 520px;
   background-color: ${({ theme }) => theme.color.overlay10};

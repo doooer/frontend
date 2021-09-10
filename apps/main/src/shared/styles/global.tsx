@@ -18,7 +18,6 @@ export const GlobalStyles = React.memo(() => {
         body,
         div,
         span,
-        iframe,
         h1,
         h2,
         h3,
@@ -45,14 +44,11 @@ export const GlobalStyles = React.memo(() => {
         td,
         article,
         aside,
-        canvas,
         footer,
         header,
         menu,
         nav,
-        section,
-        summary,
-        video {
+        section {
           margin: 0;
           padding: 0;
           border: 0;
