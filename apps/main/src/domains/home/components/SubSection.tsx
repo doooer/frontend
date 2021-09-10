@@ -27,7 +27,7 @@ const SubSectionWrapper = styled.section`
   height: fit-content;
 `;
 
-const Headline = styled.div`
+const Headline = styled.span`
   width: 100%;
   height: fit-content;
   display: flex;
