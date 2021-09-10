@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import AuthLayout from '~/domains/_layout/authLayout/components/AuthLayout';
+import AuthLayout from '~/domains/_layout/authLayout/AuthPage';
 import Button from '~/shared/components/buttons/Button';
+import ForwardLink from '~/shared/components/ForwardLink';
 import ErrorMessages from '~/shared/ErrorMessages';
 
-import blindEye from '../../../../public/images/icons/blind_eye.svg';
-import eye from '../../../../public/images/icons/eye.svg';
+import blindEye from '../../../images/icons/blind_eye.svg';
+import eye from '../../../images/icons/eye.svg';
 import { MembersInfo, PersonalInfo } from '../components/modals';
 import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
 import { SignUpViewModel } from './SignUp.view.model';
@@ -84,9 +84,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(() => {
       <br />
       <br />
       <Container>
-        <Link href="/signIn">
+        <ForwardLink href="/signIn">
           <LinkButton> 로그인 하러가기 </LinkButton>
-        </Link>
+        </ForwardLink>
         <SignUpForm onSubmit={handleSubmit(onSubmitHandler)}>
           <Controller
             control={control}

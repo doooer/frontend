@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
-import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import ForwardLink from '~/shared/components/ForwardLink';
+
+import HOME_LOGO from '../../../images/buttons/home.svg';
+import USER_IMAGE from '../../../images/buttons/test_image_user.png';
+import ALERT_ICON_BEFORE from '../../../images/buttons/unselected_bell.svg';
 
 export default function Header() {
   const pathName = useRouter().pathname;
@@ -29,15 +35,18 @@ export default function Header() {
     },
   ]);
 
-  const handelMenuColor = (path: string) => {
-    setMenuState(
-      menuState.map((menu) =>
-        menu.path.substring(0, menu.path.length) === path.substring(0, menu.path.length)
-          ? { ...menu, selected: true }
-          : { ...menu, selected: false },
-      ),
-    );
-  };
+  const handelMenuColor = useCallback(
+    (path: string) => {
+      setMenuState(
+        menuState.map((menu) =>
+          menu.path.substring(0, menu.path.length) === path.substring(0, menu.path.length)
+            ? { ...menu, selected: true }
+            : { ...menu, selected: false },
+        ),
+      );
+    },
+    [menuState],
+  );
 
   useEffect(() => {
     handelMenuColor(pathName);
@@ -56,29 +65,37 @@ export default function Header() {
   return (
     <HeaderContainer>
       <ContentsBox>
-        <Link href="/">
-          <Logo src="/images/buttons/home.svg" alt="home button" />
-        </Link>
+        <ForwardLink href="/">
+          <LogoImageWrapper>
+            <Image width={176} height={60} src={HOME_LOGO} alt="home button" />
+          </LogoImageWrapper>
+        </ForwardLink>
 
         <Navigation>
           <MenuList>
             {menuState.map((menu) => (
-              <Menu onClick={() => handelMenuColor(menu.path)} isSelected={menu.selected} key={menu.name}>
-                <Link href={menu.path}>{menu.name}</Link>
+              <Menu isSelected={menu.selected} key={menu.name}>
+                <ForwardLink href={menu.path}>{menu.name}</ForwardLink>
               </Menu>
             ))}
           </MenuList>
 
           {userState ? (
             <>
-              <Link href="/alert">
-                <AlertIcon alt="alert button" />
-              </Link>
-              <UserIcon onClick={testUserStatus} alt="my page button" />
+              <ForwardLink href="/alert">
+                <AlertIconImageWapper>
+                  <Image width={50} height={50} src={ALERT_ICON_BEFORE} alt="alert button" />
+                </AlertIconImageWapper>
+              </ForwardLink>
+              <UserIconImageWapper>
+                <Image width={50} height={50} src={USER_IMAGE} onClick={testUserStatus} alt="my page button" />
+              </UserIconImageWapper>
             </>
           ) : (
             <AuthButton onClick={testUserStatus}>
-              <Link href="/signIn">로그인/회원가입</Link>
+              <ForwardLink href="/signIn">
+                <a>로그인/회원가입</a>
+              </ForwardLink>
             </AuthButton>
           )}
         </Navigation>
@@ -110,9 +127,7 @@ const ContentsBox = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.img`
-  width: 176px;
-  height: 60px;
+const LogoImageWrapper = styled.div`
   cursor: pointer;
 `;
 
@@ -141,26 +156,16 @@ const Menu = styled.li<{ isSelected: boolean }>`
   }
 `;
 
-const AlertIcon = styled.img`
-  width: 50px;
-  height: 50px;
+const AlertIconImageWapper = styled.div`
   border-radius: 50%;
   cursor: pointer;
-  content: url('/images/buttons/unselected_bell.svg');
   margin-bottom: ${({ theme }) => theme.space.xTiny};
-
-  &:hover {
-    content: url('/images/buttons/selected_bell.svg');
-  }
 `;
 
-const UserIcon = styled.img`
-  width: 50px;
-  height: 50px;
+const UserIconImageWapper = styled.div`
   border-radius: 50%;
   cursor: pointer;
-  margin-left: ${({ theme }) => theme.space.xSmall};
-  content: url('/images/buttons/test_image_user.png');
+  margin-left: ${({ theme }) => theme.space.small};
 `;
 
 const AuthButton = styled.button`
