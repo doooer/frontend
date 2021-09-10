@@ -8,6 +8,7 @@ import ForwardLink from '~/shared/components/ForwardLink';
 import HOME_LOGO from '../../../images/buttons/home.svg';
 import USER_IMAGE from '../../../images/buttons/test_image_user.png';
 import ALERT_ICON_BEFORE from '../../../images/buttons/unselected_bell.svg';
+import Section from './Section';
 
 export default function Header() {
   const pathName = useRouter().pathname;
@@ -64,7 +65,7 @@ export default function Header() {
 
   return (
     <HeaderContainer>
-      <ContentsBox>
+      <Section>
         <ForwardLink href="/">
           <LogoImageWrapper>
             <Image width={176} height={60} src={HOME_LOGO} alt="home button" />
@@ -73,18 +74,22 @@ export default function Header() {
 
         <Navigation>
           <MenuList>
-            {menuState.map((menu) => (
-              <Menu isSelected={menu.selected} key={menu.name}>
-                <ForwardLink href={menu.path}>{menu.name}</ForwardLink>
-              </Menu>
-            ))}
+            {menuState.map((menu) => {
+              const { selected, name, path } = menu;
+
+              return (
+                <Menu isSelected={selected} key={name}>
+                  <ForwardLink href={path}>{name}</ForwardLink>
+                </Menu>
+              );
+            })}
           </MenuList>
 
           {userState ? (
             <>
               <ForwardLink href="/alert">
                 <AlertIconImageWapper>
-                  <Image width={50} height={50} src={ALERT_ICON_BEFORE} alt="alert button" />
+                  <Image width={50} height={50} src={ALERT_ICON_BEFORE} alt="alert button" className="alert_icon" />
                 </AlertIconImageWapper>
               </ForwardLink>
               <UserIconImageWapper>
@@ -99,7 +104,7 @@ export default function Header() {
             </AuthButton>
           )}
         </Navigation>
-      </ContentsBox>
+      </Section>
     </HeaderContainer>
   );
 }
@@ -109,10 +114,11 @@ const HeaderContainer = styled.header`
   height: ${({ theme }) => theme.space.xLarge};
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 1px 4px ${({ theme }) => theme.color.shadow10};
-
-  display: grid;
-  grid-template-columns: 176px auto 176px;
   font-family: ${({ theme }) => theme.font.regular};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   position: relative;
   top: 0;
@@ -121,14 +127,10 @@ const HeaderContainer = styled.header`
   z-index: 9999;
 `;
 
-const ContentsBox = styled.div`
-  grid-column-start: 2;
-  display: flex;
-  align-items: center;
-`;
-
 const LogoImageWrapper = styled.div`
   cursor: pointer;
+  width: 176px;
+  height: 60px;
 `;
 
 const Navigation = styled.nav`
@@ -157,12 +159,24 @@ const Menu = styled.li<{ isSelected: boolean }>`
 `;
 
 const AlertIconImageWapper = styled.div`
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
   margin-bottom: ${({ theme }) => theme.space.xTiny};
+
+  .alert_icon {
+    filter: invert(73%) sepia(8%) saturate(18%) hue-rotate(315deg) brightness(92%) contrast(104%);
+
+    &:hover {
+      filter: invert(22%) sepia(93%) saturate(6835%) hue-rotate(246deg) brightness(89%) contrast(97%);
+    }
+  }
 `;
 
 const UserIconImageWapper = styled.div`
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
   margin-left: ${({ theme }) => theme.space.small};

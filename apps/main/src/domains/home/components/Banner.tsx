@@ -11,7 +11,7 @@ function Banner() {
 
 const BannerContainer = styled.section`
   width: 100%;
-  height: 520px;
+  height: 480px;
   background-color: ${({ theme }) => theme.color.overlay10};
 `;
 

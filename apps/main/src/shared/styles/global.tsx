@@ -78,6 +78,7 @@ export const GlobalStyles = React.memo(() => {
         }
 
         a {
+          width: fit-content;
           color: inherit;
           text-decoration: none;
           cursor: pointer;

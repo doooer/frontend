@@ -2,19 +2,25 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
 
+import ForwardLink from '~/shared/components/ForwardLink';
+
 import ARROW_ICON from '../../../images/icons/arrow.svg';
 
 interface SubSectionPropsType {
+  path: string;
   title: string;
 }
 
-const SubSection: React.FC<SubSectionPropsType> = ({ title, children }) => {
+const SubSection: React.FC<SubSectionPropsType> = ({ path, title, children }) => {
   return (
     <SubSectionWrapper>
-      <Headline>
-        <Title>{title}</Title>
-        <ArrowIcon src={ARROW_ICON} />
-      </Headline>
+      <ForwardLink href={path}>
+        <Headline>
+          <Title>{title}</Title>
+          <ArrowIcon src={ARROW_ICON} />
+        </Headline>
+      </ForwardLink>
+
       <Article>{children}</Article>
     </SubSectionWrapper>
   );
@@ -25,10 +31,14 @@ export default SubSection;
 const SubSectionWrapper = styled.section`
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space.medium};
 `;
 
 const Headline = styled.span`
-  width: 100%;
+  margin-left: ${({ theme }) => theme.space.xxSmall};
+  width: fit-content;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -48,4 +58,7 @@ const ArrowIcon = styled(Image)`
 const Article = styled.article`
   width: 100%;
   height: fit-content;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
