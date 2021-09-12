@@ -4,8 +4,7 @@ const Section = styled.section`
   width: 100%;
   max-width: 1200px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 `;
 
 export default Section;
