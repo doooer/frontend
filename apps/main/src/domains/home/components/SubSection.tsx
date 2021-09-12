@@ -42,6 +42,8 @@ const Headline = styled.span`
   height: fit-content;
   display: flex;
   flex-direction: row;
+  gap: ${({ theme }) => theme.space.xxSmall};
+  align-items: center;
 `;
 
 const Title = styled.h1`

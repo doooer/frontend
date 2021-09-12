@@ -5,9 +5,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import ForwardLink from '~/shared/components/ForwardLink';
 
+import ALERT_ICON_BEFORE from '../../../images/buttons/bell.svg';
 import HOME_LOGO from '../../../images/buttons/home.svg';
 import USER_IMAGE from '../../../images/buttons/test_image_user.png';
-import ALERT_ICON_BEFORE from '../../../images/buttons/unselected_bell.svg';
 import Section from './Section';
 
 export default function Header() {
@@ -98,9 +98,7 @@ export default function Header() {
             </>
           ) : (
             <AuthButton onClick={testUserStatus}>
-              <ForwardLink href="/signIn">
-                <a>로그인/회원가입</a>
-              </ForwardLink>
+              <ForwardLink href="/signIn">로그인/회원가입</ForwardLink>
             </AuthButton>
           )}
         </Navigation>
@@ -138,6 +136,7 @@ const Navigation = styled.nav`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: ${({ theme }) => theme.space.xSmall};
 `;
 
 const MenuList = styled.ul`
@@ -149,7 +148,7 @@ const Menu = styled.li<{ isSelected: boolean }>`
   color: ${(props) => (props.isSelected ? props.theme.color.blue : props.theme.color.black20)};
   font-family: ${(props) => (props.isSelected ? props.theme.font.bold : props.theme.font.regular)};
   font-size: ${({ theme }) => theme.fontSize.large};
-  margin-right: ${({ theme }) => theme.space.large};
+  margin: 0 ${({ theme }) => theme.space.xSmall};
   cursor: pointer;
 
   &:hover {
@@ -159,8 +158,8 @@ const Menu = styled.li<{ isSelected: boolean }>`
 `;
 
 const AlertIconImageWapper = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   margin-bottom: ${({ theme }) => theme.space.xTiny};
@@ -179,7 +178,7 @@ const UserIconImageWapper = styled.div`
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  margin-left: ${({ theme }) => theme.space.small};
+  margin-left: ${({ theme }) => theme.space.xSmall};
 `;
 
 const AuthButton = styled.button`
@@ -192,12 +191,8 @@ const AuthButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-bottom: ${({ theme }) => theme.space.xTiny};
-
-  a {
-    color: ${({ theme }) => theme.color.blue};
-    font-size: ${({ theme }) => theme.fontSize.large};
-    font-family: ${({ theme }) => theme.font.regular};
-    text-align: center;
-    margin-bottom: -2px;
-  }
+  color: ${({ theme }) => theme.color.blue};
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-family: ${({ theme }) => theme.font.regular};
+  text-align: center;
 `;
