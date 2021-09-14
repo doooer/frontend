@@ -61,7 +61,7 @@ const color = {
   overlay10: 'rgba(0, 0, 0, 0.5)',
 
   // shadow
-  shadow10: 'rgba(30, 30, 30, 0.185)',
+  shadow10: 'rgba(10, 10, 10, 0.2)',
 };
 
 const device = {
