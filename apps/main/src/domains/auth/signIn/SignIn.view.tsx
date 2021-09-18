@@ -14,7 +14,7 @@ import { Container, ErrorText, EyeButton, Label, MessageBox } from '../component
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(
-  ({ control, errors, isVisiblePassword, toggleVisiblePassword, handleSignInSubmit }) => {
+  ({ control, errors, isVisiblePassword, signInMutation, toggleVisiblePassword, handleSignInSubmit }) => {
     return (
       <AuthLayout>
         <Container>
@@ -81,6 +81,9 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
               <Text>회원 가입</Text>
             </Button>
           </ForwardLink>
+
+          {/* TODO(@youngjung): 테스트 코드 제거 필요 !!! */}
+          {signInMutation.isLoading && <h1>Spinner.... 로그인 중</h1>}
         </Container>
       </AuthLayout>
     );
