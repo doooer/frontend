@@ -1,11 +1,7 @@
-const env = (envName: string, defaultValue = '') => {
-  return process.env[`NEXT_PUBLIC_${envName}`] ?? defaultValue;
-};
-
 const config = {
-  env: env('APP_ENV', 'development'),
+  env: process.env.NEXT_PUBLIC_APP_ENV || 'development',
   api: {
-    endpoint: env('API_ENDPOINT'),
+    endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || '',
   },
 };
 
