@@ -65,7 +65,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
               )}
             />
 
-            <Button width={504} padding="xSmall" color="white" background="blue" type="submit">
+            <Button width={504} padding="xSmall" color="white" background="blue0" type="submit">
               <Text>로그인</Text>
             </Button>
           </SignInForm>
@@ -77,7 +77,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
 
           <Title>DOOOER가 처음이신가요?</Title>
           <ForwardLink href="/signUp">
-            <Button width={504} padding="xSmall" color="white" background="blue">
+            <Button width={504} padding="xSmall" color="white" background="blue0">
               <Text>회원 가입</Text>
             </Button>
           </ForwardLink>

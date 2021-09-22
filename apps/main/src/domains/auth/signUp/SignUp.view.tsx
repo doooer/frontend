@@ -164,7 +164,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                 )}
               />
             </TermsWrapper>
-            <Button available={isValid} width={504} padding="xxSmall" color="white" background="blue">
+            <Button available={isValid} width={504} padding="xxSmall" color="white" background="blue0">
               <Text>인증 메일 발송</Text>
             </Button>
             <MessageBox>
@@ -185,7 +185,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
               </MessageBox>
             </div>
           </Label>
-          <Button available={false} width={180} padding="xxxSmall" color="white" background="blue">
+          <Button available={false} width={180} padding="xxxSmall" color="white" background="blue0">
             <Text>인증 번호 확인</Text>
           </Button>
         </Container>
@@ -204,7 +204,7 @@ const SignUpForm = styled.form`
 const LinkButton = styled.button`
   background-color: transparent;
   font-size: ${({ theme }) => theme.fontSize.small};
-  color: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.blue0};
   align-self: flex-end;
 `;
 
@@ -239,7 +239,7 @@ const Terms = styled.label`
       padding: 0 0 2px 0;
       width: fit-content;
       background-color: transparent;
-      color: ${({ theme }) => theme.color.blue};
+      color: ${({ theme }) => theme.color.blue0};
       font-size: ${({ theme }) => theme.fontSize.tiny};
     }
   }

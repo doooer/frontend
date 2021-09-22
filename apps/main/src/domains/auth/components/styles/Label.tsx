@@ -34,7 +34,7 @@ const LabelContainer = styled.label<LabelPropsType>`
       width: 0px;
       height: 2px;
       left: ${(props) => props.width! / 2}%;
-      background-color: ${({ theme }) => theme.color.blue};
+      background-color: ${({ theme }) => theme.color.blue0};
       transition: 0.3s ease all;
       visibility: hidden;
     }
