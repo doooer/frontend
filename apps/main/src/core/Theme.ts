@@ -42,7 +42,8 @@ const space = {
 const color = {
   // brand color
   green: '#94DFAE',
-  blue: '#3832E1',
+  blue0: '#3832E1',
+  blue10: 'rgb(55,64,240)',
   yellow: '#FCFC87',
   red: '#E56762',
   white: '#FFFFFF',

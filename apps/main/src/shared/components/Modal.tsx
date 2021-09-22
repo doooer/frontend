@@ -75,7 +75,7 @@ const Dialog = styled.dialog<ModalStyleType>`
 const DialogHeader = styled.header<{ padding?: ThemeSpaceType }>`
   width: 100%;
   height: 96px;
-  background-color: ${({ theme }) => theme.color.blue};
+  background-color: ${({ theme }) => theme.color.blue0};
   position: absolute;
   top: 0;
   left: 0;

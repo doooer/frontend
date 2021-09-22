@@ -136,7 +136,7 @@ const TeamImageWrapper = styled.div`
 
 const TeamImage = styled(Image)`
   border-radius: 30px;
-  background-color: ${({ theme }) => theme.color.blue};
+  background-color: ${({ theme }) => theme.color.blue0};
 `;
 
 const RecruitInformaionWrapper = styled.div`

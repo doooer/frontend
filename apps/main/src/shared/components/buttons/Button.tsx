@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { ThemeColorType, ThemeSpaceType } from '~/core/Theme';
 
@@ -10,6 +10,7 @@ interface DefaultButtonType {
   color: ThemeColorType;
   background: ThemeColorType;
   onClick?: () => void;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 function Button({
@@ -19,6 +20,7 @@ function Button({
   color,
   background,
   onClick,
+  type,
   children,
 }: PropsWithChildren<DefaultButtonType>) {
   return (
@@ -29,6 +31,7 @@ function Button({
       color={color}
       background={background}
       onClick={onClick}
+      type={type}
     >
       {children}
     </StyledButton>
@@ -42,6 +45,10 @@ const StyledButton = styled.button<DefaultButtonType>`
   border-radius: 6px;
   background-color: ${({ available, theme, background }) =>
     available === true ? theme.color[background] : theme.color.black20};
+
+  &:hover {
+    background-color: ${({ available, theme }) => (available === true ? theme.color.blue10 : theme.color.black20)};
+  }
 `;
 
 StyledButton.defaultProps = {
