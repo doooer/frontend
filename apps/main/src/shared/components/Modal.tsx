@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 
 import { ThemeSpaceType } from '~/core/Theme';
 
+import useConfirm from '../hooks/useConfirm';
+
 interface ModalStyleType {
   width: number;
   height: number;
@@ -12,8 +14,7 @@ interface ModalStyleType {
 interface ModalPropsType {
   title?: string;
   isOpen: boolean;
-  continueButtonTitle?: string; // 요청, 확인, 수락 등 버튼 클릭시 다음 단계로 진행 가능한 키워드
-  cancelMessage?: string; // "데이터가 삭제됩니다", "취소 하시겠습니까?" 등 취소 버튼 클릭시 보여지는 안내 문구
+  cancelMessage?: string; // "데이터가 삭제됩니다", "취소 하시겠습니까?" 등  x 버튼 클릭시 보여지는 안내 문구
 }
 
 const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
@@ -22,7 +23,6 @@ const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
   padding = 'xLarge',
   title,
   isOpen,
-  continueButtonTitle,
   cancelMessage,
   children,
 }) => {
@@ -33,7 +33,7 @@ const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
     <Dialog width={width} height={height} padding={padding}>
       <DialogHeader padding={padding}>
         <h2>{title}</h2>
-        <button type="button" onClick={onClickCancelButton}>
+        <button type="button" onClick={cancelMessage ? onClickCancelButton : () => setToggleModal(false)}>
           ✕
         </button>
       </DialogHeader>
