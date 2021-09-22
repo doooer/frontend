@@ -1,28 +1,48 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { ThemeSpaceType } from '~/core/Theme';
 
-interface ModalPropsType {
+interface ModalStyleType {
   width: number;
   height: number;
-  padding: ThemeSpaceType;
-  onClick?: () => void;
+  padding?: ThemeSpaceType;
 }
 
-const Modal: React.FC<ModalPropsType> = ({ width, height, padding, onClick, children }) => {
-  return (
+interface ModalPropsType {
+  title?: string;
+  isOpen: boolean;
+  continueButtonTitle?: string; // 요청, 확인, 수락 등 버튼 클릭시 다음 단계로 진행 가능한 키워드
+  cancelMessage?: string; // "데이터가 삭제됩니다", "취소 하시겠습니까?" 등 취소 버튼 클릭시 보여지는 안내 문구
+}
+
+const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
+  width,
+  height,
+  padding = 'xLarge',
+  title,
+  isOpen,
+  continueButtonTitle,
+  cancelMessage,
+  children,
+}) => {
+  const [toggleModal, setToggleModal] = useState<boolean>(isOpen);
+  const onClickCancelButton = useConfirm(cancelMessage, () => setToggleModal(false));
+
+  return toggleModal ? (
     <Dialog width={width} height={height} padding={padding}>
-      <button type="button" onClick={onClick}>
-        ✕
-      </button>
+      <DialogHeader padding={padding}>
+        <h2>{title}</h2>
+        <button type="button" onClick={onClickCancelButton}>
+          ✕
+        </button>
+      </DialogHeader>
       <article>{children}</article>
     </Dialog>
-  );
+  ) : null;
 };
-export default Modal;
 
-const Dialog = styled.dialog<ModalPropsType>`
+const Dialog = styled.dialog<ModalStyleType>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: none;
@@ -37,20 +57,57 @@ const Dialog = styled.dialog<ModalPropsType>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  padding: ${({ theme, padding }) => theme.space[padding]};
-  overflow-y: scroll;
+  padding: 0;
+
+  article {
+    width: 100%;
+    height: calc(100% - 96px);
+    position: absolute;
+    top: 96px;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 0 ${({ theme, padding }) => padding && theme.space[padding]};
+    overflow-y: scroll;
+  }
+`;
+
+const DialogHeader = styled.header<{ padding?: ThemeSpaceType }>`
+  width: 100%;
+  height: 96px;
+  background-color: ${({ theme }) => theme.color.blue};
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  h2 {
+    position: absolute;
+    top: ${({ theme }) => theme.space.medium};
+    left: ${({ theme, padding }) => padding && theme.space[padding]};
+    font-size: ${({ theme }) => theme.fontSize.large};
+    font: ${({ theme }) => theme.font.regular};
+    font-weight: 400;
+    padding-top: ${({ theme }) => theme.space.tiny};
+    color: ${({ theme }) => theme.color.white};
+  }
 
   button {
     background-color: transparent;
     position: absolute;
-    top: ${({ theme }) => theme.space.small};
-    right: ${({ theme }) => theme.space.small};
-    font-size: ${({ theme }) => theme.fontSize.medium};
-    color: ${({ theme }) => theme.color.black20};
+    top: ${({ theme }) => theme.space.medium};
+    right: ${({ theme }) => theme.space.large};
+    font-size: ${({ theme }) => theme.fontSize.xLarge};
+    color: ${({ theme }) => theme.color.white};
 
     &:hover {
-      color: ${({ theme }) => theme.color.blue};
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0px) scale(0.98);
     }
   }
 `;
+
+export default Modal;
