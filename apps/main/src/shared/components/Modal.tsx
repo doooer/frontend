@@ -30,29 +30,39 @@ const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
   const onClickCancelButton = useConfirm(cancelMessage, () => setToggleModal(false));
 
   return toggleModal ? (
-    <Dialog width={width} height={height} padding={padding}>
-      <DialogHeader padding={padding}>
-        <h2>{title}</h2>
-        <button type="button" onClick={cancelMessage ? onClickCancelButton : () => setToggleModal(false)}>
-          ✕
-        </button>
-      </DialogHeader>
-      <section>{children}</section>
-    </Dialog>
+    <DialogBackground>
+      <Dialog width={width} height={height} padding={padding}>
+        <DialogHeader padding={padding}>
+          <h2>{title}</h2>
+          <button type="button" onClick={cancelMessage ? onClickCancelButton : () => setToggleModal(false)}>
+            ✕
+          </button>
+        </DialogHeader>
+        <section>{children}</section>
+      </Dialog>
+    </DialogBackground>
   ) : null;
 };
+
+const DialogBackground = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background-color: ${({ theme }) => theme.color.overlay10};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Dialog = styled.dialog<ModalStyleType>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: none;
-  border-radius: 6px;
   box-shadow: 0 3px 30px 3px ${({ theme }) => theme.color.shadow10};
   background-color: ${({ theme }) => theme.color.white};
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
   display: flex;
   flex-direction: column;
   align-items: center;
