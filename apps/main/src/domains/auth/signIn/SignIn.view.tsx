@@ -10,7 +10,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
+import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(
