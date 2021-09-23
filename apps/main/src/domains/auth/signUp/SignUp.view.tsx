@@ -37,7 +37,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
         <br />
         <Container>
           <ForwardLink href="/signIn">
-            <LinkButton> 로그인 하러가기 </LinkButton>
+            <LinkButton type="button"> 로그인 하러가기 </LinkButton>
           </ForwardLink>
           <SignUpForm onSubmit={handleSignUpSubmit}>
             <Controller
@@ -95,7 +95,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                       onBlur={onBlur}
                     />
 
-                    <EyeButton onClick={toggleVisiblePassword}>
+                    <EyeButton type="button" onClick={toggleVisiblePassword}>
                       <Image src={isVisibleConfirmPassword ? eye : blindEye} alt="visible password" />
                     </EyeButton>
                     <div className="animate_div" />
@@ -119,7 +119,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                       onBlur={onBlur}
                     />
 
-                    <EyeButton onClick={toggleVisibleConfirmPassword}>
+                    <EyeButton type="button" onClick={toggleVisibleConfirmPassword}>
                       <Image src={isVisibleConfirmPassword ? eye : blindEye} alt="visible confirm-password" />
                     </EyeButton>
                     <div className="animate_div" />
@@ -164,7 +164,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                 )}
               />
             </TermsWrapper>
-            <Button available={isValid} width={504} padding="xxSmall" color="white" background="blue0">
+            <Button type="button" available={isValid} width={504} padding="xxSmall" color="white" background="blue0">
               <Text>인증 메일 발송</Text>
             </Button>
             <MessageBox>
@@ -185,7 +185,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
               </MessageBox>
             </div>
           </Label>
-          <Button available={false} width={180} padding="xxxSmall" color="white" background="blue0">
+          <Button type="button" available={false} width={180} padding="xxxSmall" color="white" background="blue0">
             <Text>인증 번호 확인</Text>
           </Button>
         </Container>

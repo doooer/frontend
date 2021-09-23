@@ -37,7 +37,7 @@ const Modal: React.FC<ModalPropsType & ModalStyleType> = ({
           ✕
         </button>
       </DialogHeader>
-      <article>{children}</article>
+      <section>{children}</section>
     </Dialog>
   ) : null;
 };
@@ -59,7 +59,7 @@ const Dialog = styled.dialog<ModalStyleType>`
   justify-content: center;
   padding: 0;
 
-  article {
+  section {
     width: 100%;
     height: calc(100% - 96px);
     position: absolute;
