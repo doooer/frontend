@@ -55,7 +55,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
                       onBlur={onBlur}
                     />
 
-                    <EyeButton onClick={toggleVisiblePassword}>
+                    <EyeButton type="button" onClick={toggleVisiblePassword}>
                       <Image src={isVisiblePassword ? eye : blindEye} alt="visible password" />
                     </EyeButton>
                     <div className="animate_div" />
@@ -70,20 +70,17 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
             </Button>
           </SignInForm>
           <ForwardLink href="/">
-            <FindPasswordButton> 비밀번호를 잊어버렸나요? </FindPasswordButton>
+            <FindPasswordButton type="button"> 비밀번호를 잊어버렸나요? </FindPasswordButton>
           </ForwardLink>
 
           <br />
 
           <Title>DOOOER가 처음이신가요?</Title>
           <ForwardLink href="/signUp">
-            <Button width={504} padding="xSmall" color="white" background="blue0">
+            <Button width={504} padding="xSmall" color="white" background="blue0" type="button">
               <Text>회원 가입</Text>
             </Button>
           </ForwardLink>
-
-          {/* TODO(@youngjung): 테스트 코드 제거 필요 !!! */}
-          {signInMutation.isLoading && <h1>Spinner.... 로그인 중</h1>}
         </Container>
       </AuthLayout>
     );
