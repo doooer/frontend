@@ -14,21 +14,23 @@ const AuthLayout: React.FC = ({ children }) => {
   );
 };
 
-const AuthPageContainer = styled.div`
-  max-width: 1600px;
+const AuthPageContainer = styled.main`
+  position: relative;
+  top: 80px;
+  left: 0;
+  right: 0;
+  min-width: fit-content;
   width: 100%;
-  height: 800px;
-  max-height: 1080px;
+  height: fit-content;
   margin: 0 auto;
-
+  padding-bottom: ${({ theme }) => theme.space.xLarge};
   display: grid;
   grid-template-columns: 45% auto;
 `;
 
 const NoticeImageSection = styled.section`
   grid-column-start: 1;
-  height: 100vh;
-  margin-top: -${({ theme }) => theme.space.xLarge};
+  height: calc(100% + 80px);
   background-color: ${({ theme }) => theme.color.shadow10};
 
   display: flex;

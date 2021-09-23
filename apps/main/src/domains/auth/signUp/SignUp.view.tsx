@@ -11,7 +11,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components';
+import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text } from '../components';
 import { SignUpViewModel } from './SignUp.view.model';
 
 const { name, email, password } = auth;
@@ -31,11 +31,14 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
       <AuthLayout>
         <br />
         <br />
-        <Container>
-          <ForwardLink href="/signIn">
-            <LinkButton type="button"> 로그인 하러가기 </LinkButton>
-          </ForwardLink>
-          <SignUpForm onSubmit={handleSignUpSubmit}>
+        <AuthContainer>
+          <SignInLinkWrapper>
+            <ForwardLink href="/signIn">
+              <LinkButton type="button"> 로그인 하러가기 </LinkButton>
+            </ForwardLink>
+          </SignInLinkWrapper>
+
+          <Form onSubmit={handleSignUpSubmit}>
             <Controller
               control={control}
               name="name"
@@ -160,49 +163,54 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                 )}
               />
             </TermsWrapper>
-            <Button type="button" available={isValid} width={504} padding="xxSmall" color="white" background="blue0">
-              <Text>인증 메일 발송</Text>
-            </Button>
-            <MessageBox>
-              {(errors.personalInfoCheck || errors.membersInfoCheck) && (
-                <ErrorText border={false}>{errors.membersInfoCheck!.message}</ErrorText>
-              )}
-            </MessageBox>
-          </SignUpForm>
-
-          <Label htmlFor="certification" width={60}>
-            <span>인증코드를 입력하세요.</span>
-            <div className="input_container">
-              <input type="text" placeholder="회원가입을 위한 인증 메일을발송했습니다." />
-              <span>남은시간</span>
-              <div className="animate_div" />
+            <SendMailButtonWrapper>
+              <Button type="button" available={isValid} width={504} padding="xxSmall" color="white" background="blue0">
+                <Text fontSize="small">인증 메일 발송</Text>
+              </Button>
               <MessageBox>
-                <ErrorText width={60}>에러메세지 임마</ErrorText>
+                {(errors.personalInfoCheck || errors.membersInfoCheck) && (
+                  <ErrorText border={false}>{errors.membersInfoCheck!.message}</ErrorText>
+                )}
               </MessageBox>
-            </div>
-          </Label>
-          <Button type="button" available={false} width={180} padding="xxxSmall" color="white" background="blue0">
-            <Text>인증 번호 확인</Text>
-          </Button>
-        </Container>
+            </SendMailButtonWrapper>
+
+            <Label htmlFor="certification" width={60}>
+              <span>인증코드를 입력하세요.</span>
+              <div className="input_container">
+                <input type="text" placeholder="회원가입을 위한 인증 메일을발송했습니다." />
+                <span>남은시간</span>
+                <div className="animate_div" />
+                <MessageBox>
+                  <ErrorText width={60}>에러메세지 임마</ErrorText>
+                </MessageBox>
+              </div>
+            </Label>
+            <Button type="button" available={false} width={180} padding="xxxSmall" color="white" background="blue0">
+              <Text fontSize="small">인증 번호 확인</Text>
+            </Button>
+
+            <Button width={504} padding="xSmall" color="white" background="blue0" type="submit">
+              <Text fontSize="large">회원 가입</Text>
+            </Button>
+          </Form>
+        </AuthContainer>
       </AuthLayout>
     );
   },
 );
 
-const SignUpForm = styled.form`
-  margin: ${({ theme }) => theme.space.large} 0;
+const SignInLinkWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 const LinkButton = styled.button`
   background-color: transparent;
   font-size: ${({ theme }) => theme.fontSize.small};
   color: ${({ theme }) => theme.color.blue0};
-  align-self: flex-end;
-`;
-
-const Text = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  margin-right: ${({ theme }) => theme.space.xxxSmall};
 `;
 
 const TermsWrapper = styled.div`
@@ -210,14 +218,20 @@ const TermsWrapper = styled.div`
   gap: ${({ theme }) => theme.space.small};
 `;
 
+const SendMailButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space.xTiny};
+`;
+
 const Terms = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: ${({ theme }) => theme.space.small};
+  margin-right: ${({ theme }) => theme.space.medium};
 
   input {
-    margin: 0 ${({ theme }) => theme.space.tiny};
+    margin: 0 ${({ theme }) => theme.space.tiny} 0 ${({ theme }) => theme.space.xTiny};
     width: 16px;
     height: 16px;
   }

@@ -1,10 +1,8 @@
-// test page
-import Modal from '~/shared/components/Modal';
+import { FindPasswordViewController } from '~/domains/auth/findPassword/FindPassword.view.controller';
+import { useFindPasswordViewModel } from '~/domains/auth/findPassword/FindPassword.view.model';
 
 export default function Test() {
-  return (
-    <Modal width={772} height={728} title="더보기" isOpen>
-      <h1>modal test</h1>
-    </Modal>
-  );
+  const viewModel = useFindPasswordViewModel();
+
+  return <FindPasswordViewController viewModel={viewModel} />;
 }

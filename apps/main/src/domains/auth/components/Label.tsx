@@ -17,11 +17,10 @@ const Label: React.FC<LabelPropsType> = ({ htmlFor, width, children }) => {
 const LabelContainer = styled.label<LabelPropsType>`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${({ theme }) => theme.space.large};
 
   span {
     font-size: ${({ theme }) => theme.fontSize.large};
-    margin-bottom: ${({ theme }) => theme.space.xxSmall};
+    margin-bottom: ${({ theme }) => theme.space.tiny};
   }
 
   .input_container {
