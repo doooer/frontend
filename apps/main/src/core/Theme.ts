@@ -6,6 +6,7 @@ const font = {
 
 const fontSize = {
   title: '36px',
+  xxLarge: '28px',
   xLarge: '24px',
   large: '20px',
   medium: '18px',

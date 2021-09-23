@@ -8,7 +8,7 @@ const Main = styled.main`
   margin: 0;
   min-width: fit-content;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   height: 100%;
   display: flex;
   flex-direction: column;

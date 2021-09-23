@@ -1,5 +1,5 @@
-import { FindPasswordViewController } from '~/domains/auth/findPassword/Mypage.view.controller';
-import { useFindPasswordViewModel } from '~/domains/mypage/Mypage.view.model';
+import { FindPasswordViewController } from '~/domains/auth/findPassword/FindPassword.view.controller';
+import { useFindPasswordViewModel } from '~/domains/auth/findPassword/FindPassword.view.model';
 
 export default function Test() {
   const viewModel = useFindPasswordViewModel();

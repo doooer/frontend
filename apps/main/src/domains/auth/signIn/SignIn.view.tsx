@@ -10,7 +10,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text } from '../components';
+import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text, Title } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(
@@ -86,11 +86,6 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
     );
   },
 );
-
-const Title = styled.h1`
-  margin: ${({ theme }) => theme.space.medium} 0 ${({ theme }) => theme.space.xSmall} 0;
-  font-size: ${({ theme }) => theme.fontSize.xLarge};
-`;
 
 const FindPasswordButton = styled.button`
   background-color: transparent;
