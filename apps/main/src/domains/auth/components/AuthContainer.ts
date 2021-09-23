@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const Container = styled.div`
+const AuthContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,4 @@ const Container = styled.div`
   color: ${({ theme }) => theme.color.black0};
 `;
 
-export default Container;
+export default AuthContainer;

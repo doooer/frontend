@@ -10,14 +10,14 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components';
+import { AuthContainer, ErrorText, EyeButton, Label, MessageBox } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(
   ({ control, errors, isVisiblePassword, signInMutation, toggleVisiblePassword, handleSignInSubmit }) => {
     return (
       <AuthLayout>
-        <Container>
+        <AuthContainer>
           <Title>우리의 두어가 되어주세요 :)</Title>
           <SignInForm onSubmit={handleSignInSubmit}>
             <Controller
@@ -81,7 +81,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
               <Text>회원 가입</Text>
             </Button>
           </ForwardLink>
-        </Container>
+        </AuthContainer>
       </AuthLayout>
     );
   },

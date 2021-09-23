@@ -11,7 +11,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components';
+import { AuthContainer, ErrorText, EyeButton, Label, MessageBox } from '../components';
 import { SignUpViewModel } from './SignUp.view.model';
 
 const { name, email, password } = auth;
@@ -31,7 +31,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
       <AuthLayout>
         <br />
         <br />
-        <Container>
+        <AuthContainer>
           <ForwardLink href="/signIn">
             <LinkButton type="button"> 로그인 하러가기 </LinkButton>
           </ForwardLink>
@@ -184,7 +184,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
           <Button type="button" available={false} width={180} padding="xxxSmall" color="white" background="blue0">
             <Text>인증 번호 확인</Text>
           </Button>
-        </Container>
+        </AuthContainer>
       </AuthLayout>
     );
   },

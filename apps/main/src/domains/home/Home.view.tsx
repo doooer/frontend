@@ -14,7 +14,7 @@ export const HomeView: React.VFC<HomeViewModel> = React.memo(() => {
     <Main>
       <Banner />
 
-      <HomeContentsWrapper>
+      <HomeContainer>
         <SubSection title="이번주 베스트 프로젝트" path="/#">
           {dummyDataOfBestProgects.map((card) => (
             <BestProjectCard key={card.id} {...card} />
@@ -26,12 +26,12 @@ export const HomeView: React.VFC<HomeViewModel> = React.memo(() => {
             <RecruitNewTeamCard key={card.id} {...card} />
           ))}
         </SubSection>
-      </HomeContentsWrapper>
+      </HomeContainer>
     </Main>
   );
 });
 
-const HomeContentsWrapper = styled(Section)`
+const HomeContainer = styled(Section)`
   flex-direction: column;
   gap: ${({ theme }) => theme.space.xLarge};
   margin: ${({ theme }) => theme.space.xLarge};
