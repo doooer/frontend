@@ -11,8 +11,6 @@ export type SignUpViewModel = ViewModel<typeof useSignUpViewModel>;
 export function useSignUpViewModel() {
   const [isVisiblePassword, setVisiblePassword] = useState(false);
   const [isVisibleConfirmPassword, setVisibleConfirmPassword] = useState(false);
-  const [isShownPersonalInfoModal, setTogglePersonalInfoModal] = useState(false);
-  const [isShownMembersInfoModal, setToggleMembersInfoModal] = useState(false);
 
   const {
     control,
@@ -43,30 +41,14 @@ export function useSignUpViewModel() {
     setVisibleConfirmPassword((value) => !value);
   }, []);
 
-  const openPersonalInfo = useCallback(() => {
-    if (isShownMembersInfoModal) setToggleMembersInfoModal(false);
-
-    setTogglePersonalInfoModal((value) => !value);
-  }, [isShownMembersInfoModal]);
-
-  const openMembersInfo = useCallback(() => {
-    if (isShownPersonalInfoModal) setTogglePersonalInfoModal(false);
-
-    setToggleMembersInfoModal((value) => !value);
-  }, [isShownPersonalInfoModal]);
-
   return {
     control,
     errors,
     isValid,
     isVisiblePassword,
     isVisibleConfirmPassword,
-    isShownMembersInfoModal,
-    isShownPersonalInfoModal,
     handleSignUpSubmit,
     toggleVisiblePassword,
     toggleVisibleConfirmPassword,
-    openPersonalInfo,
-    openMembersInfo,
   };
 }

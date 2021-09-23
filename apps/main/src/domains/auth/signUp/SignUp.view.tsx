@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -10,8 +11,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { MembersInfo, PersonalInfo } from '../components/modals';
-import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components/styles';
+import { Container, ErrorText, EyeButton, Label, MessageBox } from '../components';
 import { SignUpViewModel } from './SignUp.view.model';
 
 const { name, email, password } = auth;
@@ -23,13 +23,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
     isValid,
     isVisibleConfirmPassword,
     isVisiblePassword,
-    isShownMembersInfoModal,
-    isShownPersonalInfoModal,
     handleSignUpSubmit,
     toggleVisibleConfirmPassword,
     toggleVisiblePassword,
-    openMembersInfo,
-    openPersonalInfo,
   }) => {
     return (
       <AuthLayout>
@@ -139,9 +135,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                   <Terms htmlFor="personalInfoCheck">
                     <input type="checkbox" checked={value} onChange={onChange} onBlur={onBlur} />
                     <span>
-                      <button type="button" onClick={openPersonalInfo}>
-                        개인정보처리방침
-                      </button>
+                      <Link href="/personalInfoTerms">
+                        <a target="_blank">개인정보처리방침</a>
+                      </Link>
                       에 동의합니다.
                     </span>
                   </Terms>
@@ -155,9 +151,9 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                   <Terms htmlFor="membersInfoCheck">
                     <input type="checkbox" checked={value} onChange={onChange} onBlur={onBlur} />
                     <span>
-                      <button type="button" onClick={openMembersInfo}>
-                        회원약관
-                      </button>
+                      <Link href="/memberTerms">
+                        <a target="_blank">회원약관</a>
+                      </Link>
                       에 동의합니다.
                     </span>
                   </Terms>
@@ -189,9 +185,6 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
             <Text>인증 번호 확인</Text>
           </Button>
         </Container>
-
-        {isShownPersonalInfoModal && <PersonalInfo onClick={openPersonalInfo} />}
-        {isShownMembersInfoModal && <MembersInfo onClick={openMembersInfo} />}
       </AuthLayout>
     );
   },
@@ -235,8 +228,7 @@ const Terms = styled.label`
     align-items: center;
     color: ${({ theme }) => theme.color.black20};
 
-    button {
-      padding: 0 0 2px 0;
+    a {
       width: fit-content;
       background-color: transparent;
       color: ${({ theme }) => theme.color.blue0};
