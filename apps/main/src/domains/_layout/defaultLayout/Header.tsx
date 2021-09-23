@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import ForwardLink from '~/shared/components/ForwardLink';
 
@@ -145,15 +145,13 @@ const MenuList = styled.ul`
 `;
 
 const Menu = styled.li<{ isSelected: boolean }>`
-  color: ${(props) => (props.isSelected ? props.theme.color.blue : props.theme.color.black20)};
-  font-family: ${(props) => (props.isSelected ? props.theme.font.bold : props.theme.font.regular)};
+  color: ${(props) => (props.isSelected ? props.theme.color.blue0 : props.theme.color.black20)};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 0 ${({ theme }) => theme.space.xSmall};
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.color.blue};
-    font-family: ${({ theme }) => theme.font.bold};
+    color: ${({ theme }) => theme.color.blue0};
   }
 `;
 
@@ -185,13 +183,13 @@ const AuthButton = styled.button`
   width: 160px;
   height: 40px;
   border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.color.blue};
+  border: 1px solid ${({ theme }) => theme.color.blue0};
   background-color: ${({ theme }) => theme.color.white};
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: ${({ theme }) => theme.space.xTiny};
-  color: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.blue0};
   font-size: ${({ theme }) => theme.fontSize.large};
   font-family: ${({ theme }) => theme.font.regular};
   text-align: center;

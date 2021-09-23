@@ -1,19 +1,28 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import { PropsWithChildren } from 'react';
 
 import { ThemeColorType, ThemeSpaceType } from '~/core/Theme';
 
-// eslint-disable-next-line no-undef
-interface DefaultButtonType extends React.HTMLProps<HTMLButtonElement> {
+interface DefaultButtonType {
   available?: boolean;
   width: number;
   padding: ThemeSpaceType;
   color: ThemeColorType;
   background: ThemeColorType;
   onClick?: () => void;
+  type?: 'button' | 'reset' | 'submit';
 }
 
-const Button: React.FC<DefaultButtonType> = ({ available, width, padding, color, background, onClick, children }) => {
+function Button({
+  available,
+  width,
+  padding,
+  color,
+  background,
+  onClick,
+  type,
+  children,
+}: PropsWithChildren<DefaultButtonType>) {
   return (
     <StyledButton
       available={available}
@@ -22,11 +31,12 @@ const Button: React.FC<DefaultButtonType> = ({ available, width, padding, color,
       color={color}
       background={background}
       onClick={onClick}
+      type={type}
     >
       {children}
     </StyledButton>
   );
-};
+}
 
 const StyledButton = styled.button<DefaultButtonType>`
   width: ${({ width }) => width}px;
@@ -35,6 +45,10 @@ const StyledButton = styled.button<DefaultButtonType>`
   border-radius: 6px;
   background-color: ${({ available, theme, background }) =>
     available === true ? theme.color[background] : theme.color.black20};
+
+  &:hover {
+    background-color: ${({ available, theme }) => (available === true ? theme.color.blue10 : theme.color.black20)};
+  }
 `;
 
 StyledButton.defaultProps = {

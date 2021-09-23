@@ -15,12 +15,14 @@ __metadata:
     "@hookform/resolvers": ^2.7.1
     "@pkgs/eslint-config": "workspace:packages/eslint-config"
     "@types/node": ^16.3.3
+    "@types/qs": ^6.9.7
     "@types/react": 17.0.14
     axios: ^0.21.1
     eslint: 7.31.0
     eslint-config-next: 11.0.1
     moment: ^2.29.1
     next: 11.0.1
+    qs: ^6.10.1
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: ^7.12.2
@@ -534,6 +536,13 @@ __metadata:
   version: 15.7.4
   resolution: "@types/prop-types@npm:15.7.4"
   checksum: ef15c425a944f6b13824a87854cccf238e1b4cd0350b3124f4938406fe758fbdd6fadb2480d1388a00daeab61ce9888be5ca2b73da275f5dbc977143ff98e1eb
+  languageName: node
+  linkType: hard
+
+"@types/qs@npm:^6.9.7":
+  version: 6.9.7
+  resolution: "@types/qs@npm:6.9.7"
+  checksum: ee2cd0bd1eda38bcf868bb1aebb99401eb05641fff29f910c1c8316718e4d3b26c403594a62d694145684643a5d2e4dfc4b9860630c412651d37ff97571de8b0
   languageName: node
   linkType: hard
 
@@ -4222,6 +4231,15 @@ fsevents@~2.3.1:
   version: 2.1.1
   resolution: "punycode@npm:2.1.1"
   checksum: 0202dc191cb35bfd88870ac99a1e824b03486d4cee20b543ef337a6dee8d8b11017da32a3e4c40b69b19976e982c030b62bd72bba42884acb691bc5ef91354c8
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.10.1":
+  version: 6.10.1
+  resolution: "qs@npm:6.10.1"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 25e50a9107322027a998ba4eacec3df4b575c4f0a02cf0602002242d09ac997ab783384b6e90d6264a4d8387de3d17fb177d9c304a0dd9ec706a3087a069b204
   languageName: node
   linkType: hard
 
