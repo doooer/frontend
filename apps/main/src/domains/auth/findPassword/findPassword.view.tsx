@@ -10,7 +10,7 @@ import { auth } from '~/shared/constants/messages';
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
 import { ErrorText, EyeButton, Label, MessageBox } from '../components';
-import { FindPasswordViewModel } from './findPassword.view.model';
+import { FindPasswordViewModel } from './FindPassword.view.model';
 
 const { password } = auth;
 

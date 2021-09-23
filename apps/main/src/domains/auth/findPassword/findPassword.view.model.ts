@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { ViewModel } from '~/core/ViewModel';
 
-import { FindPasswordRequest, FindPasswordSchema } from './findPassword.model';
+import { FindPasswordRequest, FindPasswordSchema } from './FindPassword.model';
 
 export type FindPasswordViewModel = ViewModel<typeof useFindPasswordViewModel>;
 
