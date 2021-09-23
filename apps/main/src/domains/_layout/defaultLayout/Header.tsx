@@ -109,7 +109,7 @@ export default function Header() {
 
 const HeaderContainer = styled.header`
   width: 100%;
-  height: ${({ theme }) => theme.space.xLarge};
+  height: 80px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 2px 4px ${({ theme }) => theme.color.shadow10};
   font-family: ${({ theme }) => theme.font.regular};
@@ -118,7 +118,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   justify-content: center;
 
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

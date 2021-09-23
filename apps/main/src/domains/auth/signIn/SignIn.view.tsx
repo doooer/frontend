@@ -10,7 +10,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import { AuthContainer, ErrorText, EyeButton, Label, MessageBox } from '../components';
+import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
 export const SignInView: React.VFC<SignInViewModel> = React.memo(
@@ -19,7 +19,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
       <AuthLayout>
         <AuthContainer>
           <Title>우리의 두어가 되어주세요 :)</Title>
-          <SignInForm onSubmit={handleSignInSubmit}>
+          <Form onSubmit={handleSignInSubmit}>
             <Controller
               control={control}
               name="email"
@@ -66,9 +66,9 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
             />
 
             <Button width={504} padding="xSmall" color="white" background="blue0" type="submit">
-              <Text>로그인</Text>
+              <Text fontSize="large">로그인</Text>
             </Button>
-          </SignInForm>
+          </Form>
           <ForwardLink href="/">
             <FindPasswordButton type="button"> 비밀번호를 잊어버렸나요? </FindPasswordButton>
           </ForwardLink>
@@ -78,7 +78,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
           <Title>DOOOER가 처음이신가요?</Title>
           <ForwardLink href="/signUp">
             <Button width={504} padding="xSmall" color="white" background="blue0" type="button">
-              <Text>회원 가입</Text>
+              <Text fontSize="large">회원 가입</Text>
             </Button>
           </ForwardLink>
         </AuthContainer>
@@ -88,21 +88,12 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
 );
 
 const Title = styled.h1`
-  margin: ${({ theme }) => theme.space.large} 0 ${({ theme }) => theme.space.medium} 0;
-  padding: ${({ theme }) => theme.space.small} 0 ${({ theme }) => theme.space.xxxSmall} 0;
-  font-size: ${({ theme }) => theme.fontSize.title};
-`;
-
-const SignInForm = styled.form`
-  margin: ${({ theme }) => theme.space.small} 0;
+  margin: ${({ theme }) => theme.space.medium} 0 ${({ theme }) => theme.space.xSmall} 0;
+  font-size: ${({ theme }) => theme.fontSize.xLarge};
 `;
 
 const FindPasswordButton = styled.button`
   background-color: transparent;
-  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-size: ${({ theme }) => theme.fontSize.small};
   color: ${({ theme }) => theme.color.black20};
-`;
-
-const Text = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.large};
 `;
