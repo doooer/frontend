@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import { Main, Section } from '../_layout/defaultLayout';
+import { Main, Section } from '../_layout/DefaultLayout';
 import Banner from './components/Banner';
 import BestProjectCard from './components/BestProjectCard';
 import RecruitNewTeamCard from './components/RecruitNewTeamCard';

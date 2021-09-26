@@ -8,7 +8,7 @@ import { auth } from '~/shared/constants/messages';
 
 import blindEye from '../../../images/icons/blind_eye.svg';
 import eye from '../../../images/icons/eye.svg';
-import Main from '../../_layout/defaultLayout/Main';
+import Main from '../../_layout/DefaultLayout/Main';
 import { ErrorText, EyeButton, Form, Label, MessageBox, Title } from '../components';
 import { FindPasswordViewModel } from './FindPassword.view.model';
 

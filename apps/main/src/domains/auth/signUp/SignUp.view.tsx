@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-import AuthLayout from '~/domains/_layout/authLayout/AuthPage';
+import AuthLayout from '~/domains/_layout/AuthLayout/AuthPage';
 import Button from '~/shared/components/buttons/Button';
 import ForwardLink from '~/shared/components/ForwardLink';
 import { auth } from '~/shared/constants/messages';

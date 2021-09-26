@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import theme from '~/core/Theme';
-import { Header } from '~/domains/_layout/defaultLayout';
+import { Header } from '~/domains/_layout/DefaultLayout';
 
 moment.locale('ko');
 
