@@ -6,7 +6,7 @@ import { SignInRequest, SignInResponse } from './SignIn.model';
 
 class SignInRepository {
   signIn(signInRequestData: SignInRequest): Promise<SignInResponse> {
-    return http.post('/api/signIn', signInRequestData);
+    return http.post('/api/login', signInRequestData);
   }
 }
 
