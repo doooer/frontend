@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import { auth } from '~/shared/constants/messages';
 
 export interface SignInRequest {
-  email: string;
+  userName: string;
   password: string;
 }
 
 export interface SignInResponse {}
 
 export const SignInRequestSchema = yup.object().shape({
-  email: yup.string().email(auth.email.error.wrong).required(auth.email.error.required),
+  userName: yup.string().email(auth.email.error.wrong).required(auth.email.error.required),
   password: yup.string().required(auth.password.error.required),
 });

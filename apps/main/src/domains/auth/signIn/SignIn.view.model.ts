@@ -39,7 +39,7 @@ export function useSignInViewModel() {
   } = useForm<SignInRequest>({
     resolver: yupResolver(SignInRequestSchema),
     defaultValues: {
-      email: '',
+      userName: '',
       password: '',
     },
   });

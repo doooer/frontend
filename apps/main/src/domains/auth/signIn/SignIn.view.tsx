@@ -4,12 +4,12 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 
 import AuthLayout from '~/domains/_layout/AuthLayout/AuthPage';
+import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
+import eye from '~/shared/assets/images/icons/eye.svg';
 import Button from '~/shared/components/buttons/Button';
 import ForwardLink from '~/shared/components/ForwardLink';
 import { auth } from '~/shared/constants/messages';
 
-import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
-import eye from '~/shared/assets/images/icons/eye.svg';
 import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text, Title } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
@@ -22,7 +22,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
           <Form onSubmit={handleSignInSubmit}>
             <Controller
               control={control}
-              name="email"
+              name="userName"
               render={({ field: { value, onChange, onBlur } }) => (
                 <Label htmlFor="email">
                   <span>이메일</span>
@@ -35,7 +35,7 @@ export const SignInView: React.VFC<SignInViewModel> = React.memo(
                       onBlur={onBlur}
                     />
                     <div className="animate_div" />
-                    <MessageBox>{errors.email && <ErrorText>{errors.email.message}</ErrorText>}</MessageBox>
+                    <MessageBox>{errors.userName && <ErrorText>{errors.userName.message}</ErrorText>}</MessageBox>
                   </div>
                 </Label>
               )}
