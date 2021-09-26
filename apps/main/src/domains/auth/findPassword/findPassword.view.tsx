@@ -6,8 +6,8 @@ import { Controller } from 'react-hook-form';
 import Button from '~/shared/components/buttons/Button';
 import { auth } from '~/shared/constants/messages';
 
-import blindEye from '../../../images/icons/blind_eye.svg';
-import eye from '../../../images/icons/eye.svg';
+import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
+import eye from '~/shared/assets/images/icons/eye.svg';
 import Main from '../../_layout/DefaultLayout/Main';
 import { ErrorText, EyeButton, Form, Label, MessageBox, Title } from '../components';
 import { FindPasswordViewModel } from './FindPassword.view.model';

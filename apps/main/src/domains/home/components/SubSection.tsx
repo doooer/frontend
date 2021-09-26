@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
 
+import ARROW_ICON from '~/shared/assets/images/icons/arrow.svg';
 import ForwardLink from '~/shared/components/ForwardLink';
-
-import ARROW_ICON from '../../../images/icons/arrow.svg';
 
 interface SubSectionPropsType {
   path: string;

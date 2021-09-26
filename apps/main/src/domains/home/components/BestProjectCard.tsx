@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
 
-import ForwardLink from '../../../shared/components/ForwardLink';
+import ForwardLink from '~/shared/components/ForwardLink';
 
 interface BestProjectCardPropsType {
   projectPagePath: string;

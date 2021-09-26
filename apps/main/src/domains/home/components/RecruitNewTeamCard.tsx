@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
 
-import LIKE_BUTTON_FALSE from '../../../images/buttons/like_button_false.svg';
-import LIKE_BUTTON_TRUE from '../../../images/buttons/like_button_true.svg';
-import ForwardLink from '../../../shared/components/ForwardLink';
+import LIKE_BUTTON_FALSE from '~/shared/assets/images/buttons/like_button_false.svg';
+import LIKE_BUTTON_TRUE from '~/shared/assets/images/buttons/like_button_true.svg';
+import ForwardLink from '~/shared/components/ForwardLink';
 
 interface RecruitNewTeamCardPropsType {
   recruitPagePath: string;

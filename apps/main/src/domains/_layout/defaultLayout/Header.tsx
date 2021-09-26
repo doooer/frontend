@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
+import ALERT_ICON_BEFORE from '~/shared/assets/images/buttons/bell.svg';
+import HOME_LOGO from '~/shared/assets/images/buttons/home.svg';
+import USER_IMAGE from '~/shared/assets/images/buttons/test_image_user.png';
 import ForwardLink from '~/shared/components/ForwardLink';
 
-import ALERT_ICON_BEFORE from '../../../images/buttons/bell.svg';
-import HOME_LOGO from '../../../images/buttons/home.svg';
-import USER_IMAGE from '../../../images/buttons/test_image_user.png';
 import Section from './Section';
 
 export default function Header() {

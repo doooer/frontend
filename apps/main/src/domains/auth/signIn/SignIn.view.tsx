@@ -8,8 +8,8 @@ import Button from '~/shared/components/buttons/Button';
 import ForwardLink from '~/shared/components/ForwardLink';
 import { auth } from '~/shared/constants/messages';
 
-import blindEye from '../../../images/icons/blind_eye.svg';
-import eye from '../../../images/icons/eye.svg';
+import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
+import eye from '~/shared/assets/images/icons/eye.svg';
 import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text, Title } from '../components';
 import { SignInViewModel } from './SignIn.view.model';
 
