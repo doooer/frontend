@@ -76,12 +76,18 @@ const SubHeaderContainer = styled.div`
   width: 100%;
   height: 80px;
   background-color: ${({ theme }) => theme.color.white};
-  box-shadow: 0 2px 4px ${({ theme }) => theme.color.shadow10};
+  box-shadow: 0 1px 2px ${({ theme }) => theme.color.shadow10};
   font-family: ${({ theme }) => theme.font.regular};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
 `;
 
 const Navigation = styled.nav`
