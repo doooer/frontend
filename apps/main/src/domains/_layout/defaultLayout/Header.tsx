@@ -98,7 +98,7 @@ export default function Header() {
             </>
           ) : (
             <AuthButton type="button" onClick={testUserStatus}>
-              <ForwardLink href="/signIn">로그인/회원가입</ForwardLink>
+              <ForwardLink href="/auth/signIn">로그인/회원가입</ForwardLink>
             </AuthButton>
           )}
         </Navigation>
