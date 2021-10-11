@@ -21,7 +21,6 @@ const MypageHeaderContainer = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
   position: relative;
   top: 0;
   left: 0;

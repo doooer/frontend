@@ -5,12 +5,12 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 
 import AuthLayout from '~/domains/_layout/AuthLayout/AuthPage';
+import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
+import eye from '~/shared/assets/images/icons/eye.svg';
 import Button from '~/shared/components/buttons/Button';
 import ForwardLink from '~/shared/components/ForwardLink';
 import { auth } from '~/shared/constants/messages';
 
-import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
-import eye from '~/shared/assets/images/icons/eye.svg';
 import { AuthContainer, ErrorText, EyeButton, Form, Label, MessageBox, Text } from '../components';
 import { SignUpViewModel } from './SignUp.view.model';
 

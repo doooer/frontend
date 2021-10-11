@@ -3,12 +3,12 @@ import Image from 'next/image';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
+import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
+import eye from '~/shared/assets/images/icons/eye.svg';
 import Button from '~/shared/components/buttons/Button';
 import { auth } from '~/shared/constants/messages';
 
-import blindEye from '~/shared/assets/images/icons/blind_eye.svg';
-import eye from '~/shared/assets/images/icons/eye.svg';
-import Main from '../../_layout/DefaultLayout/Main';
+import { Main } from '../../_layout/DefaultLayout';
 import { ErrorText, EyeButton, Form, Label, MessageBox, Title } from '../components';
 import { FindPasswordViewModel } from './FindPassword.view.model';
 
