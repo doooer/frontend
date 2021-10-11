@@ -1,5 +1,5 @@
-import { EditViewController } from '~/domains/mypage/edit/Edit.view.controller';
-import { useEditViewModel } from '~/domains/mypage/edit/Edit.view.model';
+import { EditViewController } from '~/domains/profile/edit/Edit.view.controller';
+import { useEditViewModel } from '~/domains/profile/edit/Edit.view.model';
 
 export default function Edit() {
   const viewModel = useEditViewModel();

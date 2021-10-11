@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 import { ViewModel } from '~/core/ViewModel';
-import { EditRequest, EditResponse } from '~/domains/home/profile/edit/Edit.model';
+import { EditRequest, EditResponse } from '~/domains/profile/edit/Edit.model';
 
 export type EditViewModel = ViewModel<typeof useEditViewModel>;
 
