@@ -33,7 +33,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
         <br />
         <AuthContainer>
           <SignInLinkWrapper>
-            <ForwardLink href="/signIn">
+            <ForwardLink href="/auth/signin">
               <LinkButton type="button"> 로그인 하러가기 </LinkButton>
             </ForwardLink>
           </SignInLinkWrapper>
@@ -181,7 +181,7 @@ export const SignUpView: React.VFC<SignUpViewModel> = React.memo(
                 <span>남은시간</span>
                 <div className="animate_div" />
                 <MessageBox>
-                  <ErrorText width={60}>에러메세지 임마</ErrorText>
+                  <ErrorText width={60}>test</ErrorText>
                 </MessageBox>
               </div>
             </Label>

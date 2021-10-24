@@ -30,7 +30,8 @@ const AuthPageContainer = styled.main`
 
 const NoticeImageSection = styled.section`
   grid-column-start: 1;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  height: 100%;
   background-color: ${({ theme }) => theme.color.shadow10};
 
   display: flex;
