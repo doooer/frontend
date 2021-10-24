@@ -1,5 +1,5 @@
-import { SignUpViewController } from '~/domains/auth/SignUp/SignUp.view.controller';
-import { useSignUpViewModel } from '~/domains/auth/SignUp/SignUp.view.model';
+import { SignUpViewController } from '~/domains/auth/signUp/SignUp.view.controller';
+import { useSignUpViewModel } from '~/domains/auth/signUp/SignUp.view.model';
 
 export default function SignUpPage() {
   const viewModel = useSignUpViewModel();

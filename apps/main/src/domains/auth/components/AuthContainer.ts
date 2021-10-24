@@ -4,8 +4,8 @@ const AuthContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1;
-  padding-top: ${({ theme }) => theme.space.small};
   color: ${({ theme }) => theme.color.black0};
 `;
 

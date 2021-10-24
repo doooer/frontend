@@ -23,14 +23,14 @@ const AuthPageContainer = styled.main`
   width: 100%;
   height: fit-content;
   margin: 0 auto;
-  padding-bottom: ${({ theme }) => theme.space.xLarge};
+  padding: 0;
   display: grid;
   grid-template-columns: 45% auto;
 `;
 
 const NoticeImageSection = styled.section`
   grid-column-start: 1;
-  height: calc(100% + 80px);
+  height: calc(100vh - 80px);
   background-color: ${({ theme }) => theme.color.shadow10};
 
   display: flex;
