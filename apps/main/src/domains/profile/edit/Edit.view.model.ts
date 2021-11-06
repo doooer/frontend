@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 import { ViewModel } from '~/core/ViewModel';
-import { EditRequest, EditResponse } from '~/domains/profile/edit/Edit.model';
+import { EditRequest, EditRequestSchema, EditResponse } from '~/domains/profile/edit/Edit.model';
 
 export type EditViewModel = ViewModel<typeof useEditViewModel>;
 
@@ -17,8 +17,9 @@ export function useEditViewModel() {
     control,
     formState: { errors },
     handleSubmit,
+    getValues,
   } = useForm<EditRequest>({
-    resolver: yupResolver(),
+    resolver: yupResolver(EditRequestSchema),
     defaultValues: {},
   });
 
@@ -35,6 +36,7 @@ export function useEditViewModel() {
   return {
     control,
     errors,
+    getValues,
     hasAdditionalInfo,
     toggleAdditionalInfo,
     handleEditSubmit,
