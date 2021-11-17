@@ -34,7 +34,7 @@ const Input: React.FC<Props> = ({ width, placeholder, onBlur, onChange, value, i
         type="text"
         style={inputStyle}
       />
-      {maxLength && <InputLength>{`${value.length + 1}/${maxLength}`}</InputLength>}
+      {maxLength && <InputLength>{`${value.length}/${maxLength}`}</InputLength>}
     </Container>
   );
 };
@@ -43,7 +43,6 @@ const Container = styled.div<{ focused: boolean; width: number }>`
   width: ${(props) => `${props.width}px`};
   padding-bottom: ${(props) => props.theme.space.tiny};
   border-bottom: ${({ focused, theme: { color } }) => `1px solid ${focused ? color.blue0 : color.black0}`};
-  margin-top: ${(props) => props.theme.space.xSmall};
   display: flex;
   flex-direction: row;
 `;
