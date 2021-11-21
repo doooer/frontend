@@ -4,7 +4,7 @@ import React from 'react';
 
 import ForwardLink from '~/shared/components/ForwardLink';
 
-interface BestProjectCardPropsType {
+interface ProjectCardPropsType {
   projectPagePath: string;
   projectImagePath: string;
   userImagePath: string;
@@ -12,7 +12,7 @@ interface BestProjectCardPropsType {
   userName: string;
 }
 
-function BestProjectCard(props: BestProjectCardPropsType) {
+function ProjectCard(props: ProjectCardPropsType) {
   const { projectPagePath, projectImagePath, title, userName, userImagePath } = props;
 
   return (
@@ -83,4 +83,4 @@ const UserImage = styled(Image)`
   background-color: ${({ theme }) => theme.color.black20};
 `;
 
-export default React.memo(BestProjectCard);
+export default React.memo(ProjectCard);

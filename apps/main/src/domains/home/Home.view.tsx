@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
+import ProjectCard from '../../shared/components/ProjectCard';
 import { Main, Section } from '../_layout/DefaultLayout';
 import Banner from './components/Banner';
-import BestProjectCard from './components/BestProjectCard';
 import RecruitNewTeamCard from './components/RecruitNewTeamCard';
 import SubSection from './components/SubSection';
 import { dummyDataOfBestProgects, dummyDataOfRecruitTeam } from './dummyData';
@@ -17,7 +17,7 @@ export const HomeView: React.VFC<HomeViewModel> = React.memo(() => {
       <HomeContainer>
         <SubSection title="이번주 베스트 프로젝트" path="/#">
           {dummyDataOfBestProgects.map((card) => (
-            <BestProjectCard key={card.id} {...card} />
+            <ProjectCard key={card.id} {...card} />
           ))}
         </SubSection>
 

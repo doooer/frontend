@@ -71,7 +71,7 @@ const UserIntroContainer = styled.div`
 const UserStack = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.space.xxSmall};
+  gap: ${({ theme }) => theme.space.xTiny};
 
   h3 {
     font-weight: 400;
