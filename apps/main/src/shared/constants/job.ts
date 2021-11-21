@@ -11,10 +11,6 @@ export const JOB_GROUP = [
     id: 'jg3',
     value: '디자이너',
   },
-  {
-    id: 'jg4',
-    value: 'etc',
-  },
 ];
 
 export const JOB_TYPE = [

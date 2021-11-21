@@ -25,6 +25,9 @@ export function useEditViewModel() {
 
   const [hasAdditionalInfo, setHasAdditionalInfo] = useState(false);
 
+  const [jobGroup, setJopGroup] = useState<string | null>(null);
+  const [jobs, setJobs] = useState<Array<string>>([]); // 직무
+
   const handleEditSubmit = handleSubmit((formData) => {
     console.log('Edit FormData: ', formData);
   });
@@ -40,5 +43,9 @@ export function useEditViewModel() {
     hasAdditionalInfo,
     toggleAdditionalInfo,
     handleEditSubmit,
+    jobs,
+    setJobs,
+    jobGroup,
+    setJopGroup,
   };
 }

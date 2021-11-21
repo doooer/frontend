@@ -48,6 +48,7 @@ const color = {
   yellow: '#FCFC87',
   red: '#E56762',
   white: '#FFFFFF',
+  grey: '#c4c4c4',
 
   // sub color
   violet10: '#5438FF',

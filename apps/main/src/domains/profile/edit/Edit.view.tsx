@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Controller } from 'react-hook-form';
 
 import { Main, Section } from '~/domains/_layout/defaultLayout';
+import ArrowIcon from '~/shared/assets/images/icons/arrowDown.svg';
 import PlusIcon from '~/shared/assets/images/icons/plus.svg';
+import Button from '~/shared/components/Button';
 import Text from '~/shared/components/Text';
-import { JOB_TYPE } from '~/shared/constants/job';
+import { JOB_GROUP, JOB_TYPE } from '~/shared/constants/job';
 
 import SubHeader from '../components/SubHeader';
 import CheckBox from './components/CheckBox';
@@ -16,26 +18,19 @@ import SelectBox from './components/SelectBox';
 import TextArea from './components/TextArea';
 import { EditViewModel } from './Edit.view.model';
 
-const opts = [
-  {
-    key: 'opt1',
-    value: 'opt1',
-    text: 'opt1',
-  },
-  {
-    key: 'opt2',
-    value: 'opt2',
-    text: 'opt2',
-  },
-  {
-    key: 'opt3',
-    value: 'opt3',
-    text: 'opt3',
-  },
-];
-
 export const EditView: React.VFC<EditViewModel> = React.memo(
-  ({ control, errors, handleEditSubmit, hasAdditionalInfo, toggleAdditionalInfo, getValues }) => {
+  ({
+    control,
+    errors,
+    handleEditSubmit,
+    hasAdditionalInfo,
+    toggleAdditionalInfo,
+    getValues,
+    jobs,
+    setJobs,
+    jobGroup,
+    setJopGroup,
+  }) => {
     return (
       <Main>
         <SubHeader />
@@ -43,8 +38,14 @@ export const EditView: React.VFC<EditViewModel> = React.memo(
         <Section>
           <Content>
             <TitleWrapper>
-              <Title>기본 정보 입력</Title>
-              <SubTitle>필수정보를 입력하고 팀 모집에 신청하세요!</SubTitle>
+              <Title>
+                <Text font="bold" fontSize="title">
+                  기본 정보 입력
+                </Text>
+              </Title>
+              <Text fontSize="large" textColor="grey">
+                필수정보를 입력하고 팀 모집에 신청하세요!
+              </Text>
             </TitleWrapper>
 
             <InputArea label="이름">
@@ -82,23 +83,88 @@ export const EditView: React.VFC<EditViewModel> = React.memo(
 
             <InputArea label="직군">
               <InputJobHeader>
-                <SelectBox options={opts} />
+                <SelectBox
+                  options={JOB_GROUP}
+                  placeholder="직군 선택"
+                  value={JOB_GROUP.find((jg) => jg.id === jobGroup)?.value ?? '직군 선택'}
+                  onSelect={(id: string) => {
+                    setJopGroup(id);
+                    setJobs([]);
+                  }}
+                />
                 <Text
-                  textColor="violet20"
+                  textColor={jobs.length > 0 ? 'violet20' : 'black20'}
                   fontSize="large"
                   font="medium"
-                >{`${1}개의 직무를 선택하셨어요! (${1}/3)`}</Text>
+                  style={{ marginLeft: 40 }}
+                >
+                  {jobs.length > 0
+                    ? `${jobs.length}개의 직무를 선택하셨어요! (${jobs.length}/3)`
+                    : '직군과 직무를 선택해주세요. 최대 3개의 직무 선택 가능합니다.'}
+                </Text>
               </InputJobHeader>
               <InputJobContent>
-                {JOB_TYPE.filter(({ group }) => group === 'jg1').map(({ id, value }) => (
-                  <CheckBox key={id} text={value} buttonStyle={{ marginTop: 40, marginRight: 32 }} />
-                ))}
+                {jobGroup &&
+                  JOB_TYPE.filter(({ group }) => group === jobGroup).map(({ id, value }) => (
+                    <CheckBox
+                      key={id}
+                      text={value}
+                      selected={!!jobs.find((j) => j === id)}
+                      buttonStyle={{ marginTop: 40, marginRight: 32 }}
+                      id={id}
+                      onSelect={(keyID: string) => {
+                        if (jobs.includes(keyID)) {
+                          setJobs((prev) => prev.filter((p) => p !== keyID));
+                        } else if (jobs.length < 3) {
+                          setJobs((prev) => [...prev, keyID]);
+                        }
+                      }}
+                    />
+                  ))}
               </InputJobContent>
             </InputArea>
 
             <InputArea label="소개">
               <TextArea placeholder="20자 이상 200자 이내로 작성해 주세요." value="" maxLength={200} />
             </InputArea>
+
+            <TitleWrapper>
+              <Title>
+                <Text font="bold" fontSize="title" textColor="blue0">
+                  추가 정보 입력
+                </Text>
+                <TitleIcon onClick={toggleAdditionalInfo}>
+                  <IconButton src={ArrowIcon} isUp={hasAdditionalInfo} />
+                </TitleIcon>
+              </Title>
+              <Text fontSize="large" textColor="grey">
+                추가정보를 입력하여 멋진 개인 프로필을 완성하세요!
+              </Text>
+            </TitleWrapper>
+
+            {hasAdditionalInfo && (
+              <Content>
+                <InputArea label="스택 / 툴" />
+
+                <InputArea label="학력" />
+
+                <InputArea label="수상" />
+
+                <InputArea label="자격증" />
+
+                <InputArea label="링크" />
+
+                <InputArea label="대표번호" />
+
+                <InputArea label="이메일" />
+
+                <InputArea label="오픈 카톡방 링크" />
+              </Content>
+            )}
+
+            <Footer>
+              <Button onClick={() => {}} text="완료" width={165} />
+            </Footer>
           </Content>
         </Section>
       </Main>
@@ -119,19 +185,26 @@ const TitleWrapper = styled.div`
   padding: ${({ theme: { space } }) => `${space.xSmall} 0px ${space.xSmall} ${space.xSmall}`};
 `;
 
-const Title = styled.p`
-  font-size: ${(props) => props.theme.fontSize.title};
-  font: ${(props) => props.theme.font.bold};
-  color: ${(props) => props.theme.color.black0};
-  font-weight: 700;
+const Title = styled.div`
+  display: flex;
+  margin-bottom: ${(props) => props.theme.space.xSmall};
+  align-items: center;
+  width: 100%;
+  height: fit-content;
 `;
 
-const SubTitle = styled.p`
-  margin-top: ${(props) => props.theme.space.xSmall};
-  font: ${(props) => props.theme.font.medium};
-  color: #c4c4c4;
-  font-size: ${(props) => props.theme.fontSize.large};
-  font-weight: 500;
+const TitleIcon = styled.button`
+  align-items: center;
+  justify-content: center;
+  margin-left: ${(props) => props.theme.space.xSmall};
+  padding: ${({ theme: { space } }) => `${space.xTiny} 0px`};
+  background: none;
+`;
+
+const IconButton = styled(Image)<{ isUp: boolean }>`
+  width: 32px;
+  height: 32px;
+  transform: ${({ isUp }) => `rotate(${-180 * (isUp ? 1 : 0)}deg)`};
 `;
 
 const InputImageContainer = styled.div`
@@ -175,14 +248,19 @@ const InputJobHeader = styled.div`
   width: 100%;
   display: flex;
   padding-bottom: ${(props) => props.theme.space.tiny};
-
-  p {
-    margin-left: ${(props) => props.theme.space.large};
-  }
+  align-items: flex-end;
 `;
 
 const InputJobContent = styled.div`
   width: 100%;
   height: fit-content;
   min-height: 176px;
+`;
+
+const Footer = styled.div`
+  margin-top: ${(props) => props.theme.space.small};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;

@@ -8,10 +8,12 @@ interface Props {
   text: string;
   buttonStyle?: CSSProperties;
   textStyle?: CSSProperties;
+  id: string;
+  onSelect: (id: string) => void;
 }
 
-const CheckBox: React.FC<Props> = ({ selected = false, text, buttonStyle, textStyle }) => (
-  <Container selected={selected} style={buttonStyle}>
+const CheckBox: React.FC<Props> = ({ selected = false, text, buttonStyle, textStyle, onSelect, id }) => (
+  <Container selected={selected} style={buttonStyle} onClick={() => onSelect(id)}>
     <Text
       textColor="white"
       fontSize="large"

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface Props {
   width: number;
@@ -12,37 +12,25 @@ interface Props {
 }
 
 const Input: React.FC<Props> = ({ width, placeholder, onBlur, onChange, value, inputStyle, maxLength }) => {
-  const [focused, setFocused] = useState(false);
-
-  const onFocusIn = () => {
-    setFocused(true);
-  };
-
-  const onFocusOut = () => {
-    onBlur();
-    setFocused(false);
-  };
-
   return (
-    <Container focused={focused} width={width}>
+    <Container isEmpty={value.length === 0} width={width}>
       <TextInput
         onChange={onChange}
-        onBlur={onFocusOut}
         placeholder={placeholder}
         value={value}
-        onFocus={onFocusIn}
         type="text"
         style={inputStyle}
+        maxLength={maxLength}
       />
       {maxLength && <InputLength>{`${value.length}/${maxLength}`}</InputLength>}
     </Container>
   );
 };
 
-const Container = styled.div<{ focused: boolean; width: number }>`
+const Container = styled.div<{ isEmpty: boolean; width: number }>`
   width: ${(props) => `${props.width}px`};
   padding-bottom: ${(props) => props.theme.space.tiny};
-  border-bottom: ${({ focused, theme: { color } }) => `1px solid ${focused ? color.blue0 : color.black0}`};
+  border-bottom: ${({ isEmpty, theme: { color } }) => `1px solid ${!isEmpty ? color.blue0 : color.black0}`};
   display: flex;
   flex-direction: row;
 `;
